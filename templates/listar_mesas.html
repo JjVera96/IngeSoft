@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+	{{msg}}
+	{% if mode %}	
+		<table style="width:100%">
+	  	<tr>
+		    <th>Id Mesa</th>
+		    <th>Capacidad</th> 
+		    <th>Sala Asignada</th>
+	  	</tr>
+		{% for mesa in mesas %}
+		<tr>
+		    <td>{{mesa.id}}</td>
+		    <td>{{mesa.capacidad}} </td> 
+		    <td>{{mesa.sala.id}}</td>
+  		</tr>
+  		{% endfor %}
+  		</table>		
+	{% endif %}
+</div>
+{% endblock %}

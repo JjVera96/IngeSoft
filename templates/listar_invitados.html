@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+	{{msg}}
+	{% if mode %}	
+		<table style="width:100%">
+	  	<tr>
+		    <th>Nombre</th> 
+		    <th>Apellido</th>
+	  	</tr>
+		{% for invitado in invitados %}
+		<tr>
+		    <td>{{invitado.nombre}} </td> 
+		    <td>{{invitado.apellido}}</td>
+  		</tr>
+  		{% endfor %}
+  		</table>		
+	{% endif %}
+</div>
+{% endblock %}

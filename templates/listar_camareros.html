@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+	{{msg}}
+	{% if mode %}	
+		<table style="width:100%">
+	  	<tr>
+		    <th>DNI Camarero</th>
+		    <th>Nombre</th> 
+		    <th>Apellido</th>
+		    <th>Hora Inicio</th>
+		    <th>Hora Final</th>
+		    <th>Mesa Asignada</th>
+	  	</tr>
+		{% for camarero in camareros %}
+		<tr>
+		    <td>{{camarero.DNI}}</td>
+		    <td>{{camarero.nombre}} </td> 
+		    <td>{{camarero.apellido}}</td>
+		    <td>{{camarero.inicio}}</td>
+		    <td>{{camarero.final}}</td>
+		    <td>{{camarero.mesa.id}}</td>
+  		</tr>
+  		{% endfor %}
+  		</table>		
+	{% endif %}
+</div>
+{% endblock %}

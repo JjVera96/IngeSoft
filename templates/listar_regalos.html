@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+	{{msg}}
+	{% if mode %}	
+		<table style="width:100%">
+	  	<tr>
+		    <th>Tipo Regalo</th>
+		    <th>Descripcion</th> 
+		    <th>Titular</th>
+	  	</tr>
+		{% for regalo in regalos %}
+		<tr>
+		    <td>{{regalo.tipo}}</td>
+		    <td>{{regalo.descripcion}} </td> 
+		    <td>{{regalo.titular}}</td>
+  		</tr>
+  		{% endfor %}
+  		</table>		
+	{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+<h2>{{info}}</h2>
+{% if mesa_form %}
+	<center>
+	<form method="POST"> {% csrf_token %}
+	<label for="inputEmail4">Capacidad</label>
+	<input type="text" id="capacidad" name="capacidad" class="form-control" placeholder="Capacidad" required="True">
+	{{ sala_form.errors.capacidad }}
+	<label for="inputEmail4">Sala</label>
+	<select id=sala name="sala" class="form-control" required="True">
+		{% for sala in salas %}	
+		<option>{{sala.id}}</option>
+		{% endfor %}
+	</select>
+	{{ sala_form.errors.sala }}
+	<br><button type="submit" class="btn btn-primary">Crear Mesa</button>
+	</form>
+	</center>
+	{% endif %}
+	<br><a href="{% url 'listar_mesas' %}"><button class="btn btn-primary">Listar Mesas</button></a>
+</div>
+{% endblock %}

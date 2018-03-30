@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head_title %} Cotizacion {% endblock %}
+{% load static %}
+{% block jumbotron %}
+<div class='container text-center' >
+	<h1>Nuestra Boda</h1>
+	<h2>Cotizacion</h2>
+	<div class="row center">
+		<div class="card col-sm-6" style="width: 18rem;">
+		  <a href="{% url 'crear_sala' %}"><img class="card-img-top" src="{% static 'img/salas.jpg' %}" alt="Card image cap"></a>
+		  <div class="card-body">
+		    <a href="{% url 'crear_sala' %}"><h5 class="card-title">Salas</h5></a>
+		  </div>
+		</div>
+		<div class="card col-sm-6" style="width: 18rem;">
+		  <a href="{% url 'crear_mesa' %}"><img class="card-img-top" src="{% static 'img/mesa.jpg' %}" alt="Card image cap"></a>
+		  <div class="card-body">
+		    <a href="{% url 'crear_mesa' %}"><h5 class="card-title">Mesas</h5></a>
+		  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="card col-sm-6" style="width: 18rem;">
+		  <a href="{% url 'crear_invitado' %}"><img class="card-img-top" src="{% static 'img/invitados.jpg' %}" alt="Card image cap"></a>
+		  <div class="card-body">
+		    <a href="{% url 'crear_invitado' %}"><h5 class="card-title">Invitados</h5></a>
+		  </div>
+		</div>
+		<div class="card col-sm-6" style="width: 18rem;">
+		  <a href="{% url 'crear_camarero' %}"><img class="card-img-top" src="{% static 'img/camarero.jpg' %}" alt="Card image cap"></a>
+		  <div class="card-body">
+		    <a href="{% url 'crear_camarero' %}"><h5 class="card-title">Camareros</h5></a>
+		  </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
