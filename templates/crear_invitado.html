@@ -4,7 +4,7 @@
 {% block jumbotron %}
 <div class='container text-center' >
 <h2>{{info}}</h2>
-{% if invitado_form and regalo_form %}
+{% if invitado_form %}
 	<form method="POST"> {% csrf_token %}
 	<h2>Invitado</h2>
 	<label for="inputEmail4">Nombre</label>
@@ -13,25 +13,16 @@
 	<label for="inputEmail4">Apellido</label>
 	<input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required="True">
 	{{ sala_form.errors.apellido }}
-	<h2>Regalo Invitado</h2>
-	<label for="inputEmail4">Tipo</label>
-	<select id=tipo name="tipo" class="form-control" required="True">
-		<option>E</option>
-		<option>D</option>
-		<option>O</option>
-	</select>
-	{{ sala_form.errors.tipo }}
-	<label for="inputEmail4">Descripcion</label>
-	<input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion" required="True">
-	{{ sala_form.errors.descripcion }}
 	<br><button type="submit" class="btn btn-primary">Registrar Invitado</button>
 	</form>
-	{% endif %}
+	<br>
+{% endif %}
 	<div class="row" >
 		<center>
 		<a href="{% url 'listar_invitados' %}"><button class="btn btn-primary">Listar Invitados</button></a>
-		<a href="{% url 'listar_regalos' %}"><button class="btn btn-primary">Listar Regalos</button></a>
+		<a href="{% url 'listar_todos_regalos' %}"><button class="btn btn-primary">Listar Regalos</button></a>
 		</center>
 	</div>
+
 </div>
 {% endblock %}

@@ -9,11 +9,16 @@
 	  	<tr>
 		    <th>Nombre</th> 
 		    <th>Apellido</th>
+		    <th>Regalo</th>
 	  	</tr>
 		{% for invitado in invitados %}
 		<tr>
 		    <td>{{invitado.nombre}} </td> 
 		    <td>{{invitado.apellido}}</td>
+		    <td>
+		    <a href="{% url 'crear_regalos' invitado %}"><button class="btn-small btn-outline-primary">Agregar</button></a>
+		    <a href="{% url 'listar_regalos' invitado %}"><button class="btn-small btn-outline-primary">Ver</button></a>
+			</td>
   		</tr>
   		{% endfor %}
   		</table>		

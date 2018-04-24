@@ -61,27 +61,40 @@ def crear_mesa(request):
 
 def crear_invitado(request):
 	invitado_form = Invitado_Form(request.POST or None)
-	regalo_form = Regalo_Form(request.POST or None)
 	context = {
-		'invitado_form' : invitado_form,
-		'regalo_form' : regalo_form
+		'invitado_form' : invitado_form
 	}
 
-	if invitado_form.is_valid() and regalo_form.is_valid():
+	if invitado_form.is_valid():
 		form_data = invitado_form.cleaned_data
 		nombre = form_data.get("nombre")
 		apellido = form_data.get("apellido")
 		invitado = Invitado.objects.create(nombre=nombre, apellido=apellido)
-		form_data = regalo_form.cleaned_data
-		tipo = form_data.get("tipo")
-		descripcion = form_data.get("descripcion")
-		regalo = Regalo.objects.create(tipo=tipo, descripcion=descripcion)
-		regalo.titular.add(invitado)
 		context = {
 			'info' : 'Invitado Registrado'
 		}
 
 	return render(request, 'crear_invitado.html', context)
+
+def crear_regalo(request, id_user):
+	regalo_form = Regalo_Form(request.POST or None)
+	titular = Invitado.objects.get(id=id_user)
+	context = {
+		'regalo_form' : regalo_form,
+		'id_user' : id_user,
+		'titular' : titular
+	}
+
+	if regalo_form.is_valid():
+		form_data = regalo_form.cleaned_data
+		tipo = form_data.get("tipo")
+		descripcion = form_data.get("descripcion")
+		regalo = Regalo.objects.create(tipo=tipo, descripcion=descripcion)
+		regalo.titular.add(id_user)
+		url = "/app/listar_regalos/{}".format(id_user)
+		return HttpResponseRedirect(url)
+
+	return render(request, 'crear_regalo.html', context)
 
 def crear_camarero(request):
 	camarero_form = Camarero_Form(request.POST or None)
@@ -177,8 +190,9 @@ def listar_invitados(request):
 
 	return render(request, 'listar_invitados.html', context)
 
-def listar_regalos(request):
-	regalos = Regalo.objects.all()	
+def listar_regalos(request, id_user):
+	regalos = Regalo.objects.all().filter(titular=id_user)
+	titular = Invitado.objects.get(id=id_user)
 	mode = True
 	if not len(regalos):
 		msg = "No hay Regalos para listar"
@@ -189,7 +203,35 @@ def listar_regalos(request):
 	context = {
 		'regalos' : regalos,
 		'mode' : mode,
-		'msg' : msg
+		'msg' : msg,
+		'titular' : titular
 	}
 
 	return render(request, 'listar_regalos.html', context)
+
+def listar_todos_regalos(request):
+	invitados = Invitado.objects.all()
+	lista = []
+	regalos = []
+	for invitado in invitados:
+		lista = list(Regalo.objects.all().filter(titular=invitado))
+		for l in lista:
+			regalo = {}
+			regalo["tipo"] = l.tipo
+			regalo["descripcion"] = l.descripcion
+			regalo["titular"] = "{} {}".format(invitado.nombre, invitado.apellido)
+			regalos.append(regalo)
+	mode = True
+	if not len(regalos):
+		msg = "No hay Regalos para listar"
+		mode = False
+	else:
+		msg = ""
+
+	context = {
+		'regalos' : regalos,
+		'mode' : mode,
+		'msg' : msg,
+	}
+
+	return render(request, 'listar_todos_regalos.html', context)

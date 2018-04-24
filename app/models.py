@@ -21,7 +21,7 @@ class Regalo(models.Model):
 	id = models.AutoField(primary_key=True)
 	tipo = models.CharField(max_length=5)
 	descripcion = models.CharField(max_length=100)
-	titular = models.ManyToManyField("Invitado")
+	titular = models.ManyToManyField("Invitado", related_name="user")
 
 	def __str__(self):
 		return str(self.id)

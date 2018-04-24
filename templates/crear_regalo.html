@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %} Ahorro {% endblock %}
+{% block jumbotron %}
+<div class='container'>
+	{{info}}
+	<h2>Regalo Invitado</h2>
+	<form method="POST"> {% csrf_token %}
+		<label for="inputEmail4">Titular</label>
+		<input type="text" id="titular" name="titular" value="{{titular.nombre}} {{titular.apellido}}" class="form-control" readonly=”readonly” required="True">
+		<label for="inputEmail4">Tipo</label>
+		<select id=tipo name="tipo" class="form-control" required="True">
+			<option value='E'>E</option>
+			<option value='D'>D</option>
+			<option value='0'>O</option>
+		</select>
+		{{ sala_form.errors.tipo }}
+		<label for="inputEmail4">Descripcion</label>
+		<input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion" required="True">
+		{{ sala_form.errors.descripcion }}
+		<br><button type="submit" class="btn btn-primary">Crear Regalo</button>
+	</form>
+</div>
+{% endblock %}
+	
