@@ -19,4 +19,5 @@ urlpatterns = [
     path('listar_regalos/<int:id_user>', views.listar_regalos, name='listar_regalos'),
     path('crear_regalo/<int:id_user>', views.crear_regalo, name='crear_regalos'),
     path('listar_todos_regalos', views.listar_todos_regalos, name='listar_todos_regalos'),
+    path('pareja', views.pareja, name='pareja'),
 ]

@@ -7,10 +7,10 @@
 {{info}}
 {% if mesa_form %}
 	<form method="POST"> {% csrf_token %}
-	<label for="inputEmail4">Capacidad</label>
-	<input type="text" id="capacidad" name="capacidad" class="form-control" placeholder="Capacidad" required="True">
+	<label>Capacidad</label>
+	<input type="text" id="capacidad" name="capacidad" class="form-control" placeholder="Capacidad (Personas)" required="True">
 	{{ sala_form.errors.capacidad }}
-	<label for="inputEmail4">Sala</label>
+	<label>Sala</label>
 	<select id=sala name="sala" class="form-control" required="True">
 		{% for sala in salas %}	
 		<option>{{sala.id}}</option>

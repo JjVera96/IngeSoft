@@ -13,7 +13,7 @@
 	    <th>Apellido</th>
 	    <th>Hora Inicio</th>
 	    <th>Hora Final</th>
-	    <th>Mesa Asignada</th>
+	    <th>Mesas Asignada</th>
   	</tr>
 	{% for camarero in camareros %}
 	<tr>
@@ -22,7 +22,7 @@
 	    <td>{{camarero.apellido}}</td>
 	    <td>{{camarero.inicio}}</td>
 	    <td>{{camarero.final}}</td>
-	    <td>{{camarero.mesa.id}}</td>
+	    <td>{{camarero.mesa}}</td>
 		</tr>
 	{% endfor %}
 	</table>		

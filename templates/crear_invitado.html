@@ -8,10 +8,10 @@
 {% if invitado_form %}
 	<form method="POST"> {% csrf_token %}
 	<h2>Invitado</h2>
-	<label for="inputEmail4">Nombre</label>
+	<label>Nombre</label>
 	<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required="True">
 	{{ sala_form.errors.nombre }}
-	<label for="inputEmail4">Apellido</label>
+	<label>Apellido</label>
 	<input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required="True">
 	{{ sala_form.errors.apellido }}
 	<br><button type="submit" class="btn btn-primary">Registrar Invitado</button>

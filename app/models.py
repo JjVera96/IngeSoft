@@ -2,17 +2,43 @@
 from django.db import models
 
 # Create your models here.
-class Pareja(models.Model):
-	pass
+class Boda(models.Model):
+	nombre_novia = models.CharField(max_length=50)
+	apellido_novia = models.CharField(max_length=50)
+	nombre_novio = models.CharField(max_length=50)
+	apellido_novio = models.CharField(max_length=50)
+	fecha_hora = models.DateTimeField()
+	personas = models.IntegerField()
+	costo_bajo = models.IntegerField()
+	costo_alto = models.IntegerField()
 
+	def __str__(self):
+		return str("{} {}".format(self.apellido_novio, self.apellido_novia))
+
+class Pareja(models.Model):
+	curso_pre = models.BooleanField()
+	argollas = models.BooleanField()
+
+	confirmacion_novia = models.BooleanField()
+	docs_novia = models.BooleanField()
+	vestido_novia = models.BooleanField()
+	maquillaje_peinado = models.BooleanField()
+	estetica = models.BooleanField()
+	
+	confirmacion_novio = models.BooleanField()
+	docs_novio = models.BooleanField()
+	vestido_novio = models.BooleanField()
+
+"""
 class Ceremonia(models.Model):
 	pass
 
-class Fiesta(models.Model):
+class Banquete(models.Model):
 	pass
 
 class Luna_Miel(models.Model):
 	pass
+"""
 
 class Invitado(models.Model):
 	id = models.AutoField(primary_key=True)

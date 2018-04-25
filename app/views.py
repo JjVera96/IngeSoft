@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Invitado, Sala, Regalo, Mesa, Camarero
-from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form
+from .models import Invitado, Sala, Regalo, Mesa, Camarero, Pareja, Boda
+from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form, Boda_Form, Pareja_Form
 
 
 # Create your views here.
@@ -167,7 +167,22 @@ def listar_salas(request):
 	return render(request, 'listar_salas.html', context)
 
 def listar_camareros(request):
-	camareros = Camarero.objects.all()
+	lista = Camarero.objects.all()
+	camareros = []	
+	for l in lista:
+		camarero = {}
+		camarero["DNI"] = l.DNI
+		camarero["nombre"] = l.nombre
+		camarero["apellido"] = l.apellido
+		camarero["inicio"] = l.inicio
+		camarero["final"] = l.final
+		ms = Camarero.objects.values("mesa").filter(DNI = l.DNI)
+		mesas = []
+		for m in ms:
+			mesas.append(str(m["mesa"]))
+		print(mesas)
+		camarero["mesa"] = '-'.join(mesas)
+		camareros.append(camarero)
 	mode = True
 	if not len(camareros):
 		msg = "No hay Camareros para listar"
@@ -245,3 +260,103 @@ def listar_todos_regalos(request):
 	}
 
 	return render(request, 'listar_todos_regalos.html', context)
+
+def pareja(request):
+	boda = Boda.objects.all()
+	
+	if not len(boda):
+		boda_form = Boda_Form(request.POST or None)
+		pareja_form = Pareja_Form(request.POST or None)
+		context = {
+			'boda_form' : boda_form,
+			'pareja_form' : pareja_form
+		}
+
+		if boda_form.is_valid() and pareja_form.is_valid():
+			form_data = boda_form.cleaned_data
+			nombre_novia = form_data.get("nombre_novia")
+			apellido_novia = form_data.get("apellido_novia")
+			nombre_novio = form_data.get("nombre_novio")
+			apellido_novio = form_data.get("apellido_novio")
+			fecha_hora = form_data.get("fecha_hora")
+			personas = form_data.get("personas")
+			costo_bajo = 0
+			costo_alto = 0
+			form_data = pareja_form.cleaned_data
+			curso_pre = form_data.get("curso_pre")
+			argollas = form_data.get("argollas")
+			confirmacion_novia = form_data.get("confirmacion_novia")
+			docs_novia = form_data.get("docs_novia")
+			vestido_novia = form_data.get("vestido_novia")
+			maquillaje_peinado = form_data.get("maquillaje_peinado")
+			estetica = form_data.get("estetica")
+			confirmacion_novio = form_data.get("confirmacion_novio")
+			docs_novio = form_data.get("docs_novio")
+			vestido_novio = form_data.get("vestido_novio")
+
+			new_boda = Boda.objects.create(nombre_novia=nombre_novia, apellido_novia=apellido_novia, nombre_novio=nombre_novio,
+				apellido_novio=apellido_novio, fecha_hora=fecha_hora, personas=personas, costo_bajo=costo_bajo, 
+				costo_alto=costo_alto)
+			pareja = Pareja.objects.create(curso_pre=curso_pre, argollas=argollas, confirmacion_novia=confirmacion_novia,
+				docs_novia=docs_novia, vestido_novia=vestido_novia, maquillaje_peinado=maquillaje_peinado,
+				estetica=estetica, confirmacion_novio=confirmacion_novio, docs_novio=docs_novio, vestido_novio=vestido_novio)
+
+		return render(request, 'pareja.html', context)
+
+	else:
+		up_pareja = Pareja.objects.all()[0]
+		up_boda = Boda.objects.all()[0]
+		
+		boda_form = Boda_Form(request.POST or None, instance=up_boda)
+		pareja_form = Pareja_Form(request.POST or None, instance=up_pareja)
+		context = {
+			'boda_form' : boda_form,
+			'pareja_form' : pareja_form
+		}
+
+		if boda_form.is_valid() and pareja_form.is_valid():
+			form_data = boda_form.cleaned_data
+			up_boda.nombre_novia = form_data.get("nombre_novia")
+			up_boda.apellido_novia = form_data.get("apellido_novia")
+			up_boda.nombre_novio = form_data.get("nombre_novio")
+			up_boda.apellido_novio = form_data.get("apellido_novio")
+			up_boda.fecha_hora = form_data.get("fecha_hora")
+			up_boda.personas = form_data.get("personas")
+			form_data = pareja_form.cleaned_data
+			up_pareja.curso_pre = form_data.get("curso_pre")
+			up_pareja.argollas = form_data.get("argollas")
+			up_pareja.confirmacion_novia = form_data.get("confirmacion_novia")
+			up_pareja.docs_novia = form_data.get("docs_novia")
+			up_pareja.vestido_novia = form_data.get("vestido_novia")
+			up_pareja.maquillaje_peinado = form_data.get("maquillaje_peinado")
+			up_pareja.estetica = form_data.get("estetica")
+			up_pareja.confirmacion_novio = form_data.get("confirmacion_novio")
+			up_pareja.docs_novio = form_data.get("docs_novio")
+			up_pareja.vestido_novio = form_data.get("vestido_novio")
+			print(form_data.get("vestido_novio"))
+			up_boda.save()
+			up_pareja.save()
+
+		context = {
+			'identificacion' : up_boda,
+			'boda_form' : boda_form,
+			'pareja_form' : pareja_form,
+			'nombre_novia' : up_boda.nombre_novia,
+			'apellido_novia' : up_boda.apellido_novia,
+			'nombre_novio' : up_boda.nombre_novio,
+			'apellido_novio' : up_boda.apellido_novio,
+			'fecha_hora' : up_boda.fecha_hora,
+			'personas' : up_boda.personas,
+			'curso_pre' : up_pareja.curso_pre,
+			'argollas' : up_pareja.argollas,
+			'confirmacion_novia' : up_pareja.confirmacion_novia,
+			'docs_novia' : up_pareja.docs_novia,
+			'vestido_novia' : up_pareja.vestido_novia,
+			'maquillaje_peinado' : up_pareja.maquillaje_peinado,
+			'vestido_novia' : up_pareja.vestido_novia,
+			'estetica' : up_pareja.estetica,
+			'confirmacion_novio' : up_pareja.confirmacion_novio,
+			'docs_novio' : up_pareja.docs_novio,
+			'vestido_novio' : up_pareja.vestido_novio
+		}
+	return render(request, 'pareja_edit.html', context)

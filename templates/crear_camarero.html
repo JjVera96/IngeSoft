@@ -7,22 +7,22 @@
 {{info}}
 {% if camarero_form %}
 	<form method="POST"> {% csrf_token %}
-	<label for="inputEmail4">DNI</label>
+	<label>DNI</label>
 	<input type="text" id="dni" name="dni" class="form-control" placeholder="DNI" required="True">
 	{{ sala_form.errors.dni }}
-	<label for="inputEmail4">Nombre</label>
+	<label>Nombre</label>
 	<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required="True">
 	{{ sala_form.errors.nombre }}
-	<label for="inputEmail4">Apellido</label>
+	<label>Apellido</label>
 	<input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required="True">
 	{{ sala_form.errors.apellido }}
-	<label for="inputEmail4">Hora Inicio</label>
+	<label>Hora Inicio</label>
 	<input type="text" id="inicio" name="inicio" class="form-control" placeholder="Hora Inicio" required="True">
 	{{ sala_form.errors.inicio }}
-	<label for="inputEmail4">Hora Final</label>
+	<label>Hora Final</label>
 	<input type="text" id="final" name="final" class="form-control" placeholder="Hora Final" required="True">
 	{{ sala_form.errors.final }}
-	<label for="inputEmail4">Mesa Asignada</label>
+	<label>Mesa Asignada</label>
 	<select id=mesa name="mesa" class="form-control" required="True">
 		{% for mesa in mesas %}	
 		<option>{{mesa.id}}</option>

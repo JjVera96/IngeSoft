@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block head_title %}Pareja{% endblock %}
+{% load static %}
+{% block active_cot %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Pareja {{ identificacion }}{% endblock %}
+{% block container %}
+{% if boda_form and pareja_form %}
+  <form method="POST"> {% csrf_token %} 
+  <label>Nombre de la Novia</label>
+  <input type="text" id="nombre_novia" value="{{nombre_novia}}" name="nombre_novia" class="form-control" placeholder="Nombre Novia" required="True">
+  {{boda_form.errors.nombre_novia }}
+  <label>Apellido de la Novia</label>
+  <input type="text" id="apellido_novia" value="{{apellido_novia}}" name="apellido_novia" class="form-control" placeholder="Apellido Novia" required="True">
+  {{boda_form.errors.apellido_novia }}
+  <label>Nombre del Novio</label>
+  <input type="text" id="nombre_novio" value="{{nombre_novio}}" name="nombre_novio" class="form-control" placeholder="Nombre Novio" required="True">
+  {{boda_form.errors.nombre_novio }}
+  <label>Apellido del Novio</label>
+  <input type="text" id="apellido_novio" value="{{apellido_novio}}" name="apellido_novio" class="form-control" placeholder="Apellido Novio" required="True">
+  {{boda_form.errors.apellido_novio }}
+  <label for="inputdate">Fecha de la Boda</label>
+  <input type="date" id="fecha_hora" value='{{fecha_hora|date:"Y-m-d"}}' name="fecha_hora" class="form-control" placeholder="Fecha Graduación">
+  {{boda_form.errors.fecha_hora }}
+  <label >Personas Invitadas</label>
+  <input type="text" id="personas" value="{{personas}}" name="personas" class="form-control" placeholder="Cantidad de Personas)" required="True">
+  {{boda_form.errors.personas }}
+  <br>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="curso_pre" {% if curso_pre %}checked{% endif%} value="True" name="curso_pre">
+      </div>
+    </div>
+    <label class="form-control">Curso Prematrimonial</label>
+  </div>
+  {{ pareja_form.errors.curso_pre }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="argollas" {% if argollas %}checked{% endif%} value="True" name="argollas">
+      </div>
+    </div>
+    <label class="form-control">Argollas</label>
+  </div>
+  {{ pareja_form.errors.argollas }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="confirmacion_novia" {% if confirmacion_novia %}checked{% endif%} value="True" name="confirmacion_novia">
+      </div>
+    </div>
+    <label class="form-control">La novia tiene que hacer confirmación</label>
+  </div>
+  {{ pareja_form.errors.confirmacion_novia }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="docs_novia" {% if docs_novia %}checked{% endif%} name="docs_novia" value="True" >
+      </div>
+    </div>
+    <label class="form-control">Toca sacar documentos de la novia</label>
+  </div>
+  {{ pareja_form.errors.docs_novia }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="vestido_novia" {% if vestido_novia %}checked{% endif%} name="vestido_novia" value="True">
+      </div>
+    </div>
+    <label class="form-control">Comprar Vestido de la Novia</label>
+  </div>
+  {{ pareja_form.errors.vestido_novia }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="maquillaje_peinado" {% if maquillaje_peinado %}checked{% endif%} value="True"accept=" " name="maquillaje_peinado">
+      </div>
+    </div>
+    <label class="form-control">Hacer maquillaje y peinados</label>
+  </div>  
+  {{ pareja_form.errors.maquillaje_peinado }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="estetica" {% if estetica %}checked{% endif%} value="True" name="estetica" class>
+      </div>
+    </div>
+    <label class="form-control">Estetica</label>
+  </div>    
+  {{ pareja_form.errors.estetica }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="confirmacion_novio" {% if confirmacion_novio %}checked{% endif%} value="True" name="confirmacion_novio">
+      </div>
+    </div>
+    <label class="form-control">El novio tiene que hacer confirmación</label>
+  </div>    
+  {{ pareja_form.errors.confirmacion_novio }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="docs_novio" {% if docs_novio %}checked{% endif%} value="True" name="docs_novio"">
+      </div>
+    </div>
+    <label class="form-control">Toca sacar documentos del novio</label>
+  </div>    
+  {{ pareja_form.errors.docs_novio }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="vestido_novio" {% if vestido_novio %}checked{% endif%} value="True" name="vestido_novio">
+      </div>
+    </div>
+    <label class="form-control">Comprar Vestido del Novio</label>
+  </div>    
+  {{ pareja_form.errors.vestido_novio }}
+
+  <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+{% endif %}
+{% endblock %}

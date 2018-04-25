@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block head_title %}Pareja{% endblock %}
+{% load static %}
+{% block active_cot %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Pareja{% endblock %}
+{% block container %}
+{% if boda_form and pareja_form %}
+  <form method="POST"> {% csrf_token %} 
+  <label>Nombre de la Novia</label>
+  <input type="text" id="nombre_novia" name="nombre_novia" class="form-control" placeholder="Nombre Novia" required="True">
+  {{boda_form.errors.nombre_novia }}
+  <label>Apellido de la Novia</label>
+  <input type="text" id="apellido_novia" name="apellido_novia" class="form-control" placeholder="Apellido Novia" required="True">
+  {{boda_form.errors.apellido_novia }}
+  <label>Nombre de la Novio</label>
+  <input type="text" id="nombre_novio" name="nombre_novio" class="form-control" placeholder="Nombre Novio" required="True">
+  {{boda_form.errors.nombre_novio }}
+  <label>Apellido de la Novio</label>
+  <input type="text" id="apellido_novio" name="apellido_novio" class="form-control" placeholder="Apellido Novio" required="True">
+  {{boda_form.errors.apellido_novio }}
+  <label for="inputdate">Fecha de la Boda</label>
+  <input type="date" id="fecha_hora" name="fecha_hora" class="form-control" placeholder="Fecha Graduación">
+  {{boda_form.errors.fecha_hora }}
+  <label >Personas</label>
+  <input type="text" id="personas" name="personas" class="form-control" placeholder="Cantidad de Personas)" required="True">
+  {{boda_form.errors.personas }}
+
+  <label>Curso Prematrimonial</label>
+  <input type="checkbox" id="curso_pre" name="curso_pre" class="form-control">
+  {{ pareja_form.errors.curso_pre }}
+  <label>Argollas</label>
+  <input type="checkbox" id="argollas" name="argollas" class="form-control">
+  {{ pareja_form.errors.argollas }}
+  <label>La novia tiene que hacer confirmación</label>
+  <input type="checkbox" id="confirmacion_novia" name="confirmacion_novia" class="form-control">
+  {{ pareja_form.errors.curso_pre }}
+  <label>Toca sacar documentos de la novia</label>
+  <input type="checkbox" id="docs_novia" name="docs_novia" class="form-control">
+  {{ pareja_form.errors.docs_novia }}
+  <label>Comprar Vestido de la Novia</label>
+  <input type="checkbox" id="vestido_novia" name="vestido_novia" class="form-control">
+  {{ pareja_form.errors.vestido_novia }}
+  <label>Hacer maquillaje y peinados</label>
+  <input type="checkbox" id="maquillaje_peinado" name="maquillaje_peinado" class="form-control">
+  {{ pareja_form.errors.maquillaje_peinado }}
+  <label>Estetica</label>
+  <input type="checkbox" id="estetica" name="estetica" class="form-control">
+  {{ pareja_form.errors.estetica }}
+  <label>El novio tiene que hacer confirmación</label>
+  <input type="checkbox" id="confirmacion_novio" name="confirmacion_novio" class="form-control">
+  {{ pareja_form.errors.confirmacion_novio }}
+  <label>Toca sacar documentos del novio</label>
+  <input type="checkbox" id="docs_novio" name="docs_novio" class="form-control">
+  {{ pareja_form.errors.docs_novio }}
+  <label>Comprar Vestido del Novio</label>
+  <input type="checkbox" id="vestido_novio" name="vestido_novio" class="form-control">
+  {{ pareja_form.errors.vestido_novio }}
+  <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+{% endif %}
+{% endblock %}
