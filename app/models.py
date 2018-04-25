@@ -2,6 +2,18 @@
 from django.db import models
 
 # Create your models here.
+class Pareja(models.Model):
+	pass
+
+class Ceremonia(models.Model):
+	pass
+
+class Fiesta(models.Model):
+	pass
+
+class Luna_Miel(models.Model):
+	pass
+
 class Invitado(models.Model):
 	id = models.AutoField(primary_key=True)
 	nombre = models.CharField(max_length=50)

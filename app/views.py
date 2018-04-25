@@ -123,7 +123,17 @@ def crear_camarero(request):
 	return render(request, 'crear_camarero.html', context)
 
 def listar_mesas(request):
-	mesas = Mesa.objects.all()
+	salas = Sala.objects.all()
+	lista = []
+	mesas = []
+	for sala in salas:
+		lista = list(Mesa.objects.all().filter(sala=sala))
+		for l in lista:
+			mesa = {}
+			mesa["id"] = l.id
+			mesa["capacidad"] = l.capacidad
+			mesa["sala"] = sala
+			mesas.append(mesa)
 	mode = True
 	if not len(mesas):
 		msg = "No hay Mesas para listar"
@@ -136,7 +146,7 @@ def listar_mesas(request):
 		'mode' : mode,
 		'msg' : msg
 	}
-
+	
 	return render(request, 'listar_mesas.html', context)
 
 def listar_salas(request):
