@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-{% block head_title %} Ahorro {% endblock %}
-{% block jumbotron %}
-<div class='container'>
-	{{info}}
-	<h2>Regalo Invitado</h2>
+{% block head_title %}Crear Regalo{% endblock %}
+{% load static %}
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Crear Regalo{% endblock %}
+{% block container %}
+{{info}}
+{% if regalo_form %}
 	<form method="POST"> {% csrf_token %}
 		<label for="inputEmail4">Titular</label>
 		<input type="text" id="titular" name="titular" value="{{titular.nombre}} {{titular.apellido}}" class="form-control" readonly=”readonly” required="True">
@@ -19,6 +21,5 @@
 		{{ sala_form.errors.descripcion }}
 		<br><button type="submit" class="btn btn-primary">Crear Regalo</button>
 	</form>
-</div>
+{% endif %}
 {% endblock %}
-	

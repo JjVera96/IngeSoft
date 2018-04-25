@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Listar Invitados{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-	{{msg}}
-	{% if mode %}	
-		<table style="width:100%">
-	  	<tr>
-		    <th>Nombre</th> 
-		    <th>Apellido</th>
-		    <th>Regalo</th>
-	  	</tr>
-		{% for invitado in invitados %}
-		<tr>
-		    <td>{{invitado.nombre}} </td> 
-		    <td>{{invitado.apellido}}</td>
-		    <td>
-		    <a href="{% url 'crear_regalos' invitado %}"><button class="btn-small btn-outline-primary">Agregar</button></a>
-		    <a href="{% url 'listar_regalos' invitado %}"><button class="btn-small btn-outline-primary">Ver</button></a>
-			</td>
-  		</tr>
-  		{% endfor %}
-  		</table>		
-	{% endif %}
-</div>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Listar Invitados{% endblock %}
+{% block container %}
+{{msg}}
+{% if mode %}	
+	<table style="width:100%" class="text-center">
+  	<tr>
+	    <th>Nombre</th> 
+	    <th>Apellido</th>
+	    <th>Regalo</th>
+  	</tr>
+	{% for invitado in invitados %}
+	<tr>
+	    <td>{{invitado.nombre}} </td> 
+	    <td>{{invitado.apellido}}</td>
+	    <td>
+	    <a href="{% url 'crear_regalos' invitado %}"><button class="btn-small btn-outline-primary">Agregar</button></a>
+	    <a href="{% url 'listar_regalos' invitado %}"><button class="btn-small btn-outline-primary">Ver</button></a>
+		</td>
+	</tr>
+	{% endfor %}
+	</table>		
+{% endif %}
 {% endblock %}

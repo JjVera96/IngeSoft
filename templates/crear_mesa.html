@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Crear Mesa{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-<h2>{{info}}</h2>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Crear Mesa{% endblock %}
+{% block container %}
+{{info}}
 {% if mesa_form %}
 	<form method="POST"> {% csrf_token %}
 	<label for="inputEmail4">Capacidad</label>
@@ -20,5 +21,4 @@
 	</form>
 	{% endif %}
 	<br><a href="{% url 'listar_mesas' %}"><button class="btn btn-primary">Listar Mesas</button></a>
-</div>
 {% endblock %}

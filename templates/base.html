@@ -1,50 +1,76 @@
 {% load static %}
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
+
   <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title> NB | {% block head_title%}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'navbar-top-fixed.css' %}" rel="stylesheet">
+    <link href="{% static 'css/2-col-portfolio.css' %}" rel="stylesheet">
+
   </head>
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{% url 'index'%}">Nuestra Boda</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'cotizacion'%}">Cotización</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'logistica'%}">Logistica</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'ahorro'%}">Ahorro</a>
-          </li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index'%}">Nuestra Boda</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% block active_inicio %}<li class="nav-item">{% endblock %}
+              <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+            </li>
+            {% block active_cot %}<li class="nav-item">{% endblock %}
+              <a class="nav-link" href="{% url 'cotizacion'%}">Cotización</a>
+            </li>
+            {% block active_log %}<li class="nav-item">{% endblock %}
+              <a class="nav-link" href="{% url 'logistica'%}">Logistica</a>
+            </li>
+            {% block active_aho %}<li class="nav-item">{% endblock %}
+              <a class="nav-link" href="{% url 'ahorro'%}">Ahorro</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <center>
-    {% block jumbotron %}
+    <!-- Page Content -->
+    <div class="container">
     
-    {% endblock %}
-    </center>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
-    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+      <!-- Page Heading -->
+      <h1 class="my-4">Nuestra Boda
+        <small>{% block jumbotrom %}Inicio{% endblock %}</small>
+      </h1>
+      {% block container %}
+      
+      {% endblock %}
+    </div>
+    <!-- /.container -->
+    <br>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark ">
+      <div class="container">
+        <p class="m-0 text-center text-white">Ingenieria del Software III - UTP - 2018 </p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
   </body>
+
 </html>

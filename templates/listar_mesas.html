@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Listar Mesas{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-	{{msg}}
-	{% if mode %}	
-		<table style="width:100%">
-	  	<tr>
-		    <th>Id Mesa</th>
-		    <th>Capacidad</th> 
-		    <th>Sala Asignada</th>
-	  	</tr>
-		{% for mesa in mesas %}
-		<tr>
-		    <td>{{mesa.id}}</td>
-		    <td>{{mesa.capacidad}} </td> 
-		    <td>{{mesa.sala.id}}</td>
-  		</tr>
-  		{% endfor %}
-  		</table>		
-	{% endif %}
-</div>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Listar Mesas{% endblock %}
+{% block container %}
+{{msg}}
+{% if mode %}	
+	<table style="width:100%" class="text-center">
+  	<tr>
+	    <th>Id Mesa</th>
+	    <th>Capacidad</th> 
+	    <th>Sala Asignada</th>
+  	</tr>
+	{% for mesa in mesas %}
+	<tr>
+	    <td>{{mesa.id}}</td>
+	    <td>{{mesa.capacidad}} Personas</td> 
+	    <td>{{mesa.sala.id}}</td>
+	</tr>
+	{% endfor %}
+	</table>		
+{% endif %}
 {% endblock %}

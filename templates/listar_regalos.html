@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Listar Regalos{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-	{{msg}}
-	{% if mode %}	
-		<table style="width:100%">
-	  	<tr>
-		    <th>Tipo Regalo</th>
-		    <th>Descripcion</th> 
-		    <th>Titular</th>
-	  	</tr>
-		{% for regalo in regalos %}
-		<tr>
-		    <td>{{regalo.tipo}}</td>
-		    <td>{{regalo.descripcion}} </td> 
-		    <td>{{titular.nombre}} {{titular.apellido}}</td>
-  		</tr>
-  		{% endfor %}
-  		</table>		
-	{% endif %}
-</div>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Listar Regalos de {{titular.nombre}} {{titular.apellido}}{% endblock %}
+{% block container %}
+{{msg}}
+{% if mode %}	
+<table style="width:100%" class="text-center">
+	<tr>
+	    <th>Tipo Regalo</th>
+	    <th>Descripcion</th> 
+	    <th>Titular</th>
+	</tr>
+	{% for regalo in regalos %}
+	<tr>
+	    <td>{{regalo.tipo}}</td>
+	    <td>{{regalo.descripcion}} </td> 
+	    <td>{{titular.nombre}} {{titular.apellido}}</td>
+	</tr>
+	{% endfor %}
+</table>		
+{% endif %}
 {% endblock %}

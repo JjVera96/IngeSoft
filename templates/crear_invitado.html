@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Registrar Invitado{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-<h2>{{info}}</h2>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Registrar Invitado{% endblock %}
+{% block container %}
+{{info}}
 {% if invitado_form %}
 	<form method="POST"> {% csrf_token %}
 	<h2>Invitado</h2>
@@ -17,12 +18,6 @@
 	</form>
 	<br>
 {% endif %}
-	<div class="row" >
-		<center>
-		<a href="{% url 'listar_invitados' %}"><button class="btn btn-primary">Listar Invitados</button></a>
-		<a href="{% url 'listar_todos_regalos' %}"><button class="btn btn-primary">Listar Regalos</button></a>
-		</center>
-	</div>
-
-</div>
+	<a href="{% url 'listar_invitados' %}"><button class="btn btn-primary">Listar Invitados</button></a>
+	<a href="{% url 'listar_todos_regalos' %}"><button class="btn btn-primary">Listar Regalos</button></a>
 {% endblock %}

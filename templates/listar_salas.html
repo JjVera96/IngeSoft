@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Listar Salas{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-	{{msg}}
-	{% if mode %}	
-		<table style="width:100%">
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Listar Salas{% endblock %}
+{% block container %}
+{{msg}}
+{% if mode %}	
+<table style="width:100%" class="text-center">
 	  	<tr>
 		    <th>Id Sala</th>
 		    <th>Capacidad</th> 
@@ -13,10 +14,9 @@
 		{% for sala in salas %}
 		<tr>
 		    <td>{{sala.id}}</td>
-		    <td>{{sala.capacidad}} </td> 
+		    <td>{{sala.capacidad}} Mesas</td> 
   		</tr>
   		{% endfor %}
   		</table>		
-	{% endif %}
-</div>
+{% endif %}
 {% endblock %}

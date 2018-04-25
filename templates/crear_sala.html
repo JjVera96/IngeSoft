@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block head_title %} Cotizacion {% endblock %}
+{% block head_title %}Crear Sala{% endblock %}
 {% load static %}
-{% block jumbotron %}
-<div class='container text-center' >
-<h2>{{info}}</h2>
+{% block active_log %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Crear Sala{% endblock %}
+{% block container %}
+{{info}}
 {% if sala_form %}
-	<center>
 	<form method="POST"> {% csrf_token %}
 	<label for="inputEmail4">Identificador</label>
 	<input type="text" id="id" name="id" class="form-control" placeholder="Identificador" required="True">
@@ -15,8 +15,6 @@
 	{{ sala_form.errors.capacidad }}
 	<br><button type="submit" class="btn btn-primary">Crear Sala</button>
 	</form>
-	</center>
-	{% endif %}
-	<br><a href="{% url 'listar_salas' %}"><button class="btn btn-primary">Listar Sala</button></a><br>
-</div>
+{% endif %}
+<br><a href="{% url 'listar_salas' %}"><button class="btn btn-primary">Listar Sala</button></a>
 {% endblock %}
