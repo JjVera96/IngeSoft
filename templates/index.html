@@ -2,6 +2,9 @@
 {% load static %}
 {% block active_inicio %}<li class="nav-item active">{% endblock %}
 {% block container %}
+<div class="row">
+  <center>
+<div class="col-md-9">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -13,26 +16,26 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="{% static 'img/anillos.jpg' %}" alt="First slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/anillos.jpg' %}" alt="First slide">
       <div class="carousel-caption text-dark d-none d-md-block ">
     	<h1>Nuestra Boda</h1>
     	<p class="">Gestiona Y Organiza Tu Boda De La Mejor Manera</p>
   	  </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="{% static 'img/rosas.jpg' %}" alt="Second slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/rosas.jpg' %}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="{% static 'img/corazon.jpg' %}" alt="Third slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/corazon.jpg' %}" alt="Third slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="{% static 'img/pasteles.jpg' %}" alt="Fourth slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/pasteles.jpg' %}" alt="Fourth slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="{% static 'img/novios.jpg' %}" alt="Fifth slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/novios.jpg' %}" alt="Fifth slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="{% static 'img/boda.jpg' %}" alt="Sixth slide">
+      <img class="d-block img-fluid rounded border border-dark" src="{% static 'img/boda.jpg' %}" alt="Sixth slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -43,5 +46,8 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+</div>
+</div>
+</center>
 </div>
 {% endblock %}

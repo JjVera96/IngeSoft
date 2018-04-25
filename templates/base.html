@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
   <head>
 
@@ -17,6 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/2-col-portfolio.css' %}" rel="stylesheet">
 
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
   </head>
 
   <body>
@@ -31,16 +34,28 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             {% block active_inicio %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+              <a class="nav-link" href="{% url 'index'%}">
+                Inicio
+                <i class="fa fa-home"></i>
+              </a>
             </li>
             {% block active_cot %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'cotizacion'%}">Cotización</a>
+              <a class="nav-link" href="{% url 'cotizacion'%}">
+                Cotización
+                <i class="fa fa-cart-arrow-down"></i>
+              </a>
             </li>
             {% block active_log %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'logistica'%}">Logistica</a>
+              <a class="nav-link" href="{% url 'logistica'%}">
+                Logistica
+                <i class="fa fa fa-area-chart"></i>
+              </a>
             </li>
             {% block active_aho %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'ahorro'%}">Ahorro</a>
+              <a class="nav-link" href="{% url 'ahorro'%}">
+                Ahorro
+                <i class="fa fa-dollar"></i>
+              </a>
             </li>
           </ul>
         </div>
