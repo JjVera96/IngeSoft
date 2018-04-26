@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block head_title %}Fiesta{% endblock %}
+{% load static %}
+{% block active_cot %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Fiesta{% endblock %}
+{% block container %}
+{% if fest_form %}
+<form method="POST"> {% csrf_token %} 
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="recordatorios" name="recordatorios">
+      </div>
+    </div>
+    <label class="form-control">Recordatorios</label>
+  </div>
+  {{ cere_form.errors.recordatorios }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="musiva_vivo" name="musiva_vivo">
+      </div>
+    </div>
+    <label class="form-control">Musica en Vivo</label>
+  </div>
+  {{ cere_form.errors.musiva_vivo }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="tarjetas" name="tarjetas">
+      </div>
+    </div>
+    <label class="form-control">Tarjetas</label>
+  </div>
+  {{ cere_form.errors.tarjetas }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="licores" name="licores">
+      </div>
+    </div>
+    <label class="form-control">Licores</label>
+  </div>
+  {{ cere_form.errors.licores }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="fuera_ciudad" name="fuera_ciudad">
+      </div>
+    </div>
+    <label class="form-control">Lugar fuera de la ciudad</label>
+  </div>
+  {{ cere_form.errors.fuera_ciudad }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="flores" name="flores">
+      </div>
+    </div>
+    <label class="form-control">Flores</label>
+  </div>
+  {{ cere_form.errors.flores }}
+
+  <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+{% endif %}
+{% endblock %}

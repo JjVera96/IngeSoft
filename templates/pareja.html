@@ -24,38 +24,108 @@
   <label >Personas</label>
   <input type="text" id="personas" name="personas" class="form-control" placeholder="Cantidad de Personas)" required="True">
   {{boda_form.errors.personas }}
+  <br>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="curso_pre" name="curso_pre">
+      </div>
+    </div>
+    <label class="form-control">Curso Prematrimonial</label>
+  </div>
+  {{ pareja_form.errors.curso_pre }}
 
-  <label>Curso Prematrimonial</label>
-  <input type="checkbox" id="curso_pre" name="curso_pre" class="form-control">
-  {{ pareja_form.errors.curso_pre }}
-  <label>Argollas</label>
-  <input type="checkbox" id="argollas" name="argollas" class="form-control">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="argollas" name="argollas">
+      </div>
+    </div>
+    <label class="form-control">Argollas</label>
+  </div>
   {{ pareja_form.errors.argollas }}
-  <label>La novia tiene que hacer confirmación</label>
-  <input type="checkbox" id="confirmacion_novia" name="confirmacion_novia" class="form-control">
-  {{ pareja_form.errors.curso_pre }}
-  <label>Toca sacar documentos de la novia</label>
-  <input type="checkbox" id="docs_novia" name="docs_novia" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="confirmacion_novia" name="confirmacion_novia">
+      </div>
+    </div>
+    <label class="form-control">La novia tiene que hacer confirmación</label>
+  </div>
+  {{ pareja_form.errors.confirmacion_novia }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="docs_novia"  name="docs_novia">
+      </div>
+    </div>
+    <label class="form-control">Toca sacar documentos de la novia</label>
+  </div>
   {{ pareja_form.errors.docs_novia }}
-  <label>Comprar Vestido de la Novia</label>
-  <input type="checkbox" id="vestido_novia" name="vestido_novia" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="vestido_novia"  name="vestido_novia" >
+      </div>
+    </div>
+    <label class="form-control">Comprar Vestido de la Novia</label>
+  </div>
   {{ pareja_form.errors.vestido_novia }}
-  <label>Hacer maquillaje y peinados</label>
-  <input type="checkbox" id="maquillaje_peinado" name="maquillaje_peinado" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="maquillaje_peinado" name="maquillaje_peinado">
+      </div>
+    </div>
+    <label class="form-control">Hacer maquillaje y peinados</label>
+  </div>  
   {{ pareja_form.errors.maquillaje_peinado }}
-  <label>Estetica</label>
-  <input type="checkbox" id="estetica" name="estetica" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="estetica" name="estetica" class>
+      </div>
+    </div>
+    <label class="form-control">Estetica</label>
+  </div>    
   {{ pareja_form.errors.estetica }}
-  <label>El novio tiene que hacer confirmación</label>
-  <input type="checkbox" id="confirmacion_novio" name="confirmacion_novio" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="confirmacion_novio" name="confirmacion_novio">
+      </div>
+    </div>
+    <label class="form-control">El novio tiene que hacer confirmación</label>
+  </div>    
   {{ pareja_form.errors.confirmacion_novio }}
-  <label>Toca sacar documentos del novio</label>
-  <input type="checkbox" id="docs_novio" name="docs_novio" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="docs_novio" name="docs_novio"">
+      </div>
+    </div>
+    <label class="form-control">Toca sacar documentos del novio</label>
+  </div>    
   {{ pareja_form.errors.docs_novio }}
-  <label>Comprar Vestido del Novio</label>
-  <input type="checkbox" id="vestido_novio" name="vestido_novio" class="form-control">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="vestido_novio" name="vestido_novio">
+      </div>
+    </div>
+    <label class="form-control">Comprar Vestido del Novio</label>
+  </div>    
   {{ pareja_form.errors.vestido_novio }}
-  <button type="submit" class="btn btn-primary">Actualizar</button>
+  
+  <button type="submit" class="btn btn-primary">Crear</button>
   </form>
 {% endif %}
 {% endblock %}

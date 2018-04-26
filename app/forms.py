@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import Invitado, Sala, Regalo, Mesa, Camarero, Boda, Pareja
+from .models import Invitado, Sala, Regalo, Mesa, Camarero, Boda, Pareja, Ceremonia, Fiesta, Luna_Miel
 
 class Invitado_Form(forms.ModelForm):
 	class Meta:
 		model = Invitado
-		fields = ["nombre", "apellido"]
+		fields = ["nombre", "apellido", "direccion"]
 
 class Sala_Form(forms.ModelForm):
 	class Meta:
@@ -39,3 +39,19 @@ class Pareja_Form(forms.ModelForm):
 		model = Pareja
 		fields = ["curso_pre", "argollas", "confirmacion_novia", "docs_novia", "vestido_novia", "maquillaje_peinado",
 		"vestido_novia", "estetica", "confirmacion_novio" , "docs_novio", "vestido_novio"]
+
+class Ceremonia_Form(forms.ModelForm):
+	class Meta:
+		model = Ceremonia
+		fields = ["tipo", "abogado", "flores", "iglesia_fuera", "ceremonia", "ramo", "pajecitos", "carro_antiguo", 
+		"coros", "boutonnieres", "servicio_fotografia"]
+
+class Fiesta_Form(forms.ModelForm):
+	class Meta:
+		model = Fiesta
+		fields = ["recordatorios", "musiva_vivo", "tarjetas", "licores", "fuera_ciudad", "flores"]
+
+class Luna_Miel_Form(forms.ModelForm):
+	class Meta:
+		model = Luna_Miel
+		fields = ["viaje_colombia"]

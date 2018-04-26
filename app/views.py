@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Invitado, Sala, Regalo, Mesa, Camarero, Pareja, Boda
-from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form, Boda_Form, Pareja_Form
+from .models import Invitado, Sala, Regalo, Mesa, Camarero, Pareja, Boda, Ceremonia, Fiesta, Luna_Miel
+from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form, Boda_Form, Pareja_Form, Ceremonia_Form, Fiesta_Form, Luna_Miel_Form
 
 
 # Create your views here.
@@ -69,7 +69,8 @@ def crear_invitado(request):
 		form_data = invitado_form.cleaned_data
 		nombre = form_data.get("nombre")
 		apellido = form_data.get("apellido")
-		invitado = Invitado.objects.create(nombre=nombre, apellido=apellido)
+		direccion = form_data.get("direccion")
+		invitado = Invitado.objects.create(nombre=nombre, apellido=apellido, direccion=direccion)
 		context = {
 			'info' : 'Invitado Registrado'
 		}
@@ -91,7 +92,7 @@ def crear_regalo(request, id_user):
 		descripcion = form_data.get("descripcion")
 		regalo = Regalo.objects.create(tipo=tipo, descripcion=descripcion)
 		regalo.titular.add(id_user)
-		url = "/app/listar_regalos/{}".format(id_user)
+		url = "/app/logistica/listar_regalos/{}".format(id_user)
 		return HttpResponseRedirect(url)
 
 	return render(request, 'crear_regalo.html', context)
@@ -180,7 +181,6 @@ def listar_camareros(request):
 		mesas = []
 		for m in ms:
 			mesas.append(str(m["mesa"]))
-		print(mesas)
 		camarero["mesa"] = '-'.join(mesas)
 		camareros.append(camarero)
 	mode = True
@@ -301,6 +301,8 @@ def pareja(request):
 				docs_novia=docs_novia, vestido_novia=vestido_novia, maquillaje_peinado=maquillaje_peinado,
 				estetica=estetica, confirmacion_novio=confirmacion_novio, docs_novio=docs_novio, vestido_novio=vestido_novio)
 
+			return HttpResponseRedirect('pareja')
+
 		return render(request, 'pareja.html', context)
 
 	else:
@@ -333,7 +335,6 @@ def pareja(request):
 			up_pareja.confirmacion_novio = form_data.get("confirmacion_novio")
 			up_pareja.docs_novio = form_data.get("docs_novio")
 			up_pareja.vestido_novio = form_data.get("vestido_novio")
-			print(form_data.get("vestido_novio"))
 			up_boda.save()
 			up_pareja.save()
 
@@ -360,3 +361,171 @@ def pareja(request):
 			'vestido_novio' : up_pareja.vestido_novio
 		}
 	return render(request, 'pareja_edit.html', context)
+
+def ceremonia(request):
+	cere = Ceremonia.objects.all()
+	
+	if not len(cere):
+		print("Hola")
+		cere_form = Ceremonia_Form(request.POST or None)
+		context = {
+			'cere_form' : cere_form
+		}
+
+		if cere_form.is_valid():
+			print("Valido")
+			form_data = cere_form.cleaned_data
+			tipo = form_data.get("tipo")
+			abogado = form_data.get("abogado")
+			flores = form_data.get("flores")
+			iglesia_fuera = form_data.get("iglesia_fuera")
+			ceremonia = form_data.get("ceremonia")
+			ramo = form_data.get("ramo")
+			pajecitos = form_data.get("pajecitos")
+			carro_antiguo = form_data.get("carro_antiguo")
+			coros = form_data.get("coros")
+			boutonnieres = form_data.get("boutonnieres")
+			servicio_fotografia = form_data.get("servicio_fotografia")
+
+			new_cere = Ceremonia.objects.create(tipo=tipo, abogado=abogado, flores=flores, iglesia_fuera=iglesia_fuera, 
+				ceremonia=ceremonia, ramo=ramo, pajecitos=pajecitos, carro_antiguo=carro_antiguo, coros=coros, 
+				boutonnieres=boutonnieres, servicio_fotografia=servicio_fotografia)
+
+			return HttpResponseRedirect('ceremonia')
+
+		return render(request, 'ceremonia.html', context)
+
+	else:
+		print("Perro")
+		up_cere = Ceremonia.objects.all()[0]
+		
+		cere_form = Ceremonia_Form(request.POST or None, instance=up_cere)
+		context = {
+			'cere_form' : cere_form
+		}
+
+		if cere_form.is_valid():
+			form_data = cere_form.cleaned_data
+			up_cere.tipo = form_data.get("tipo")
+			up_cere.abogado = form_data.get("abogado")
+			up_cere.flores = form_data.get("flores")
+			up_cere.iglesia_fuera = form_data.get("iglesia_fuera")
+			up_cere.ceremonia = form_data.get("ceremonia")
+			up_cere.ramo = form_data.get("ramo")
+			up_cere.pajecitos = form_data.get("pajecitos")
+			up_cere.carro_antiguo = form_data.get("carro_antiguo")
+			up_cere.coros = form_data.get("coros")
+			up_cere.boutonnieres = form_data.get("boutonnieres")
+			up_cere.servicio_fotografia = form_data.get("servicio_fotografia")
+			up_cere.save()
+
+		context = {
+			'cere_form' : cere_form,
+			'tipo' : up_cere.tipo,
+			'abogado' : up_cere.abogado,
+			'flores' : up_cere.flores,
+			'iglesia_fuera' : up_cere.iglesia_fuera,
+			'ceremonia' : up_cere.ceremonia,
+			'ramo' : up_cere.ramo,
+			'pajecitos' : up_cere.pajecitos,
+			'carro_antiguo' : up_cere.carro_antiguo,
+			'coros' : up_cere.coros,
+			'boutonnieres' : up_cere.boutonnieres,
+			'servicio_fotografia' : up_cere.servicio_fotografia
+			}
+
+	return render(request, 'ceremonia_edit.html', context)
+
+def fiesta(request):
+	fest = Fiesta.objects.all()
+	print(fest)
+	if not len(fest):
+		fest_form = Fiesta_Form(request.POST or None)
+		context = {
+			'fest_form' : fest_form
+		}
+
+		if fest_form.is_valid():
+			form_data = fest_form.cleaned_data
+			recordatorios = form_data.get("recordatorios")
+			musiva_vivo = form_data.get("musiva_vivo")
+			tarjetas = form_data.get("tarjetas")
+			licores = form_data.get("licores")
+			fuera_ciudad = form_data.get("fuera_ciudad")
+			flores = form_data.get("flores")
+
+			new_fest = Fiesta.objects.create(recordatorios=recordatorios, musiva_vivo=musiva_vivo, tarjetas=tarjetas, 
+				licores=licores, fuera_ciudad=fuera_ciudad, flores=flores)
+
+			return HttpResponseRedirect('fiesta')
+
+		return render(request, 'fiesta.html', context)
+
+	else:
+		up_fest = Fiesta.objects.all()[0]
+		
+		fest_form = Fiesta_Form(request.POST or None, instance=up_fest)
+		context = {
+			'fest_form' : fest_form
+		}
+
+		if fest_form.is_valid():
+			form_data = fest_form.cleaned_data
+			up_fest.recordatorios = form_data.get("recordatorios")
+			up_fest.musiva_vivo = form_data.get("musiva_vivo")
+			up_fest.tarjetas = form_data.get("tarjetas")
+			up_fest.licores = form_data.get("licores")
+			up_fest.fuera_ciudad = form_data.get("fuera_ciudad")
+			up_fest.flores = form_data.get("flores")
+			up_fest.save()
+
+		context = {
+			'fest_form' : fest_form,
+			'recordatorios' : up_fest.recordatorios,
+			'musiva_vivo' : up_fest.musiva_vivo,
+			'tarjetas' : up_fest.tarjetas,
+			'licores' : up_fest.licores,
+			'fuera_ciudad' : up_fest.fuera_ciudad,
+			'flores' : up_fest.flores
+			}
+
+	return render(request, 'fiesta_edit.html', context)
+
+def luna_miel(request):
+	luna = Luna_Miel.objects.all()
+	
+	if not len(luna):
+		luna_form = Luna_Miel_Form(request.POST or None)
+		context = {
+			'luna_form' : luna_form
+		}
+
+		if luna_form.is_valid():
+			form_data = luna_form.cleaned_data
+			viaje_colombia = form_data.get("viaje_colombia")
+
+			new_luna = Luna_Miel.objects.create(viaje_colombia=viaje_colombia)
+
+			return HttpResponseRedirect('luna_miel')
+
+		return render(request, 'luna_miel.html', context)
+
+	else:
+		up_luna = Luna_Miel.objects.all()[0]
+		
+		luna_form = Luna_Miel_Form(request.POST or None, instance=up_luna)
+		context = {
+			'luna_form' : luna_form
+		}
+
+		if luna_form.is_valid():
+			form_data = luna_form.cleaned_data
+			up_luna.viaje_colombia = form_data.get("viaje_colombia")
+			up_luna.save()
+
+		context = {
+			'luna_form' : luna_form,
+			'viaje_colombia' : up_luna.viaje_colombia
+			}
+	return render(request, 'luna_miel_edit.html', context)
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head_title %}Luna de Miel{% endblock %}
+{% load static %}
+{% block active_cot %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Luna de Miel{% endblock %}
+{% block container %}
+{% if luna_form %}
+<form method="POST"> {% csrf_token %} 
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="viaje_colombia" name="viaje_colombia"  {% if viaje_colombia %}checked{% endif%}>
+      </div>
+    </div>
+    <label class="form-control">Luna de Miel en Colombia</label>
+  </div>
+  {{ luna_form.errors.viaje_colombia }}
+
+  <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+{% endif %}
+{% endblock %}

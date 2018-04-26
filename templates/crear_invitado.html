@@ -14,10 +14,12 @@
 	<label>Apellido</label>
 	<input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required="True">
 	{{ sala_form.errors.apellido }}
+	<label>Dirección</label>
+	<input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion" required="True">
+	{{ sala_form.errors.direccion }}
 	<br><button type="submit" class="btn btn-primary">Registrar Invitado</button>
 	</form>
-	<br>
 {% endif %}
-	<a href="{% url 'listar_invitados' %}"><button class="btn btn-primary">Listar Invitados</button></a>
+	<br><a href="{% url 'listar_invitados' %}"><button class="btn btn-primary">Listar Invitados</button></a>
 	<a href="{% url 'listar_todos_regalos' %}"><button class="btn btn-primary">Listar Regalos</button></a>
 {% endblock %}

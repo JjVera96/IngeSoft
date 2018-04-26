@@ -18,35 +18,52 @@ class Boda(models.Model):
 class Pareja(models.Model):
 	curso_pre = models.BooleanField()
 	argollas = models.BooleanField()
-
 	confirmacion_novia = models.BooleanField()
 	docs_novia = models.BooleanField()
 	vestido_novia = models.BooleanField()
 	maquillaje_peinado = models.BooleanField()
 	estetica = models.BooleanField()
-	
 	confirmacion_novio = models.BooleanField()
 	docs_novio = models.BooleanField()
 	vestido_novio = models.BooleanField()
 
-"""
-class Ceremonia(models.Model):
-	pass
 
-class Banquete(models.Model):
-	pass
+class Ceremonia(models.Model):
+	tipo = models.CharField(max_length=50)
+	abogado = models.BooleanField(default=False) 
+	flores = models.BooleanField(default=False)
+	iglesia_fuera = models.BooleanField()
+	ceremonia = models.BooleanField(default=False)
+	ramo = models.BooleanField(default=False)
+	pajecitos = models.BooleanField(default=False)
+	carro_antiguo = models.BooleanField(default=False)
+	coros = models.BooleanField(default=False)
+	boutonnieres = models.BooleanField(default=False)
+	servicio_fotografia = models.BooleanField(default=False)
+
+
+class Fiesta(models.Model):
+	recordatorios = models.BooleanField()
+	musiva_vivo = models.BooleanField()
+	tarjetas = models.BooleanField()
+	licores = models.BooleanField()
+	fuera_ciudad = models.BooleanField()
+	flores = models.BooleanField()
+
 
 class Luna_Miel(models.Model):
-	pass
-"""
+	viaje_colombia = models.BooleanField(blank=True)
+
 
 class Invitado(models.Model):
 	id = models.AutoField(primary_key=True)
 	nombre = models.CharField(max_length=50)
 	apellido = models.CharField(max_length=50)
+	direccion = models.CharField(max_length=50)
 
 	def __str__(self):
 		return str(self.id)
+
 
 class Sala(models.Model):
 	id = models.CharField(max_length=20, primary_key=True)
@@ -54,6 +71,7 @@ class Sala(models.Model):
 
 	def __str__(self):
 		return str(self.id)
+
 
 class Regalo(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -64,6 +82,7 @@ class Regalo(models.Model):
 	def __str__(self):
 		return str(self.id)
 
+
 class Mesa(models.Model):
 	id = models.AutoField(primary_key=True)
 	capacidad = models.IntegerField()
@@ -71,6 +90,7 @@ class Mesa(models.Model):
 
 	def __str__(self):
 		return str(self.id)
+
 
 class Camarero(models.Model):
 	DNI = models.CharField(max_length=50, primary_key=True)

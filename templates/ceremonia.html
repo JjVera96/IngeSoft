@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block head_title %}Ceremonia{% endblock %}
+{% load static %}
+{% block active_cot %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Ceremonia{% endblock %}
+{% block container %}
+{% if cere_form %}
+<form method="POST"> {% csrf_token %} 
+	<label>Tipo de Matrimonio</label>
+	<select id=tipo name="tipo" class="form-control" required="True">
+		<option>Civil</option>
+		<option>Iglesia</option>
+	</select>
+	{{ cere_form.errors.tipo }}
+	<br>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="abogado" name="abogado">
+      </div>
+    </div>
+    <label class="form-control">Abogado</label>
+  </div>
+  {{ cere_form.errors.abogado }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="flores" name="flores">
+      </div>
+    </div>
+    <label class="form-control">Flores</label>
+  </div>
+  {{ cere_form.errors.flores }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="iglesia_fuera" name="iglesia_fuera">
+      </div>
+    </div>
+    <label class="form-control">Iglesia fuera del Barrio</label>
+  </div>
+  {{ cere_form.errors.iglesia_fuera }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="ceremonia" name="ceremonia">
+      </div>
+    </div>
+    <label class="form-control">Ceremonia</label>
+  </div>
+  {{ cere_form.errors.ceremonia }}
+
+   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="ramo" name="ramo">
+      </div>
+    </div>
+    <label class="form-control">Ramo</label>
+  </div>
+  {{ cere_form.errors.ramo }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="pajecitos" name="pajecitos">
+      </div>
+    </div>
+    <label class="form-control">Pajecitos</label>
+  </div>
+  {{ cere_form.errors.pajecitos }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="carro_antiguo" name="carro_antiguo">
+      </div>
+    </div>
+    <label class="form-control">Carro Antiguo</label>
+  </div>
+  {{ cere_form.errors.carro_antiguo }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="coros" name="coros">
+      </div>
+    </div>
+    <label class="form-control">Coros</label>
+  </div>
+  {{ cere_form.errors.coros }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="boutonnieres" name="boutonnieres">
+      </div>
+    </div>
+    <label class="form-control">Boutonnieres</label>
+  </div>
+  {{ cere_form.errors.boutonnieres }}
+
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="servicio_fotografia" name="servicio_fotografia">
+      </div>
+    </div>
+    <label class="form-control">Servicio Fotografia</label>
+  </div>
+  {{ cere_form.errors.servicio_fotografia }}
+
+  <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+{% endif %}
+{% endblock %}
