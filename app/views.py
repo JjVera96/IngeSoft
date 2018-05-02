@@ -7,24 +7,47 @@ from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Fo
 
 # Create your views here.
 def index(request):
-    context = {}
-    return render(request, 'index.html', context)
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	context = {
+		'costos' : costos
+	}
+
+	return render(request, 'index.html', context)
 
 def cotizacion(request):
-	context = {}
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	context = {
+		'costos' : costos
+	}
+
 	return render(request, 'cotizacion.html', context)
 
 def logistica(request):
-	context = {}
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	context = {
+		'costos' : costos
+	}
+
 	return render(request, 'logistica.html', context)
 
 def ahorro(request):
-	context = {}
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	context = {
+		'costos' : costos
+	}
+
 	return render(request, 'ahorro.html', context)
 
 def crear_sala(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	sala_form = Sala_Form(request.POST or None)
 	context = {
+		'costos' : costos,
 		'sala_form' : sala_form
 	}
 	if sala_form.is_valid():
@@ -33,15 +56,19 @@ def crear_sala(request):
 		capacidad = form_data.get("capacidad")
 		sala = Sala.objects.create(id=id, capacidad=capacidad)
 		context = {
+			'costos' : costos,
 			'info' : 'Sala creada'
 		}
 
 	return render(request, 'crear_sala.html', context)
 
 def crear_mesa(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	mesa_form = Mesa_Form(request.POST or None)
 	salas = Sala.objects.all()
 	context = {
+		'costos' : costos,
 		'mesa_form' : mesa_form,
 		'salas' : salas
 	}
@@ -54,14 +81,18 @@ def crear_mesa(request):
 		msala = Sala.objects.get(id=id_sala)
 		mesa.sala.add(msala)
 		context = {
+			'costos' : costos,
 			'info' : 'Mesa Creada'
 		}
 
 	return render(request, 'crear_mesa.html', context)
 
 def crear_invitado(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	invitado_form = Invitado_Form(request.POST or None)
 	context = {
+		'costos' : costos,
 		'invitado_form' : invitado_form
 	}
 
@@ -72,15 +103,19 @@ def crear_invitado(request):
 		direccion = form_data.get("direccion")
 		invitado = Invitado.objects.create(nombre=nombre, apellido=apellido, direccion=direccion)
 		context = {
+			'costos' : costos,
 			'info' : 'Invitado Registrado'
 		}
 
 	return render(request, 'crear_invitado.html', context)
 
 def crear_regalo(request, id_user):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	regalo_form = Regalo_Form(request.POST or None)
 	titular = Invitado.objects.get(id=id_user)
 	context = {
+		'costos' : costos,
 		'regalo_form' : regalo_form,
 		'id_user' : id_user,
 		'titular' : titular
@@ -98,9 +133,12 @@ def crear_regalo(request, id_user):
 	return render(request, 'crear_regalo.html', context)
 
 def crear_camarero(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	camarero_form = Camarero_Form(request.POST or None)
 	mesas = Mesa.objects.all()
 	context = {
+		'costos' : costos,
 		'camarero_form' : camarero_form,
 		'mesas' : mesas
 	}
@@ -118,12 +156,15 @@ def crear_camarero(request):
 		amesa = Mesa.objects.get(id=idmesa)
 		camarero.mesa.add(amesa)
 		context = {
+			'costos' : costos,
 			'info' : 'Camarero Registrado'
 		}
 
 	return render(request, 'crear_camarero.html', context)
 
 def listar_mesas(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	salas = Sala.objects.all()
 	lista = []
 	mesas = []
@@ -143,6 +184,7 @@ def listar_mesas(request):
 		msg = ""
 
 	context = {
+		'costos' : costos,
 		'mesas' : mesas,
 		'mode' : mode,
 		'msg' : msg
@@ -151,6 +193,8 @@ def listar_mesas(request):
 	return render(request, 'listar_mesas.html', context)
 
 def listar_salas(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	salas = Sala.objects.all()
 	mode = True
 	if not len(salas):
@@ -160,6 +204,7 @@ def listar_salas(request):
 		msg = ""
 
 	context = {
+		'costos' : costos,
 		'salas' : salas,
 		'mode' : mode,
 		'msg' : msg
@@ -168,6 +213,8 @@ def listar_salas(request):
 	return render(request, 'listar_salas.html', context)
 
 def listar_camareros(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	lista = Camarero.objects.all()
 	camareros = []	
 	for l in lista:
@@ -191,6 +238,7 @@ def listar_camareros(request):
 		msg = ""
 
 	context = {
+		'costos' : costos,
 		'camareros' : camareros,
 		'mode' : mode,
 		'msg' : msg
@@ -199,6 +247,8 @@ def listar_camareros(request):
 	return render(request, 'listar_camareros.html', context)
 
 def listar_invitados(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	invitados = Invitado.objects.all()
 	mode = True
 	if not len(invitados):
@@ -208,6 +258,7 @@ def listar_invitados(request):
 		msg = ""
 
 	context = {
+		'costos' : costos,
 		'invitados' : invitados,
 		'mode' : mode,
 		'msg' : msg
@@ -216,6 +267,8 @@ def listar_invitados(request):
 	return render(request, 'listar_invitados.html', context)
 
 def listar_regalos(request, id_user):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	regalos = Regalo.objects.all().filter(titular=id_user)
 	titular = Invitado.objects.get(id=id_user)
 	mode = True
@@ -226,6 +279,7 @@ def listar_regalos(request, id_user):
 		msg = ""
 
 	context = {
+		'costos' : costos,	
 		'regalos' : regalos,
 		'mode' : mode,
 		'msg' : msg,
@@ -235,6 +289,8 @@ def listar_regalos(request, id_user):
 	return render(request, 'listar_regalos.html', context)
 
 def listar_todos_regalos(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	invitados = Invitado.objects.all()
 	lista = []
 	regalos = []
@@ -254,6 +310,7 @@ def listar_todos_regalos(request):
 		msg = ""
 
 	context = {
+		'costos' : costos,
 		'regalos' : regalos,
 		'mode' : mode,
 		'msg' : msg,
@@ -268,6 +325,7 @@ def pareja(request):
 		boda_form = Boda_Form(request.POST or None)
 		pareja_form = Pareja_Form(request.POST or None)
 		context = {
+			'costos' : '0$-0$',
 			'boda_form' : boda_form,
 			'pareja_form' : pareja_form
 		}
@@ -301,17 +359,19 @@ def pareja(request):
 				docs_novia=docs_novia, vestido_novia=vestido_novia, maquillaje_peinado=maquillaje_peinado,
 				estetica=estetica, confirmacion_novio=confirmacion_novio, docs_novio=docs_novio, vestido_novio=vestido_novio)
 
+			calcular_costos()
 			return HttpResponseRedirect('pareja')
 
 		return render(request, 'pareja.html', context)
 
 	else:
 		up_pareja = Pareja.objects.all()[0]
-		up_boda = Boda.objects.all()[0]
-		
+		up_boda = Boda.objects.all()[0]	
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 		boda_form = Boda_Form(request.POST or None, instance=up_boda)
 		pareja_form = Pareja_Form(request.POST or None, instance=up_pareja)
 		context = {
+			'costos' : costos,
 			'boda_form' : boda_form,
 			'pareja_form' : pareja_form
 		}
@@ -337,8 +397,10 @@ def pareja(request):
 			up_pareja.vestido_novio = form_data.get("vestido_novio")
 			up_boda.save()
 			up_pareja.save()
+			calcular_costos()
 
 		context = {
+			'costos' : costos,
 			'identificacion' : up_boda,
 			'boda_form' : boda_form,
 			'pareja_form' : pareja_form,
@@ -360,15 +422,18 @@ def pareja(request):
 			'docs_novio' : up_pareja.docs_novio,
 			'vestido_novio' : up_pareja.vestido_novio
 		}
+
 	return render(request, 'pareja_edit.html', context)
 
 def ceremonia(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	cere = Ceremonia.objects.all()
 	
 	if not len(cere):
-		print("Hola")
 		cere_form = Ceremonia_Form(request.POST or None)
 		context = {
+			'costos' : costos,
 			'cere_form' : cere_form
 		}
 
@@ -391,12 +456,12 @@ def ceremonia(request):
 				ceremonia=ceremonia, ramo=ramo, pajecitos=pajecitos, carro_antiguo=carro_antiguo, coros=coros, 
 				boutonnieres=boutonnieres, servicio_fotografia=servicio_fotografia)
 
+			calcular_costos()
 			return HttpResponseRedirect('ceremonia')
 
 		return render(request, 'ceremonia.html', context)
 
 	else:
-		print("Perro")
 		up_cere = Ceremonia.objects.all()[0]
 		
 		cere_form = Ceremonia_Form(request.POST or None, instance=up_cere)
@@ -418,8 +483,10 @@ def ceremonia(request):
 			up_cere.boutonnieres = form_data.get("boutonnieres")
 			up_cere.servicio_fotografia = form_data.get("servicio_fotografia")
 			up_cere.save()
+			calcular_costos()
 
 		context = {
+			'costos' : costos,
 			'cere_form' : cere_form,
 			'tipo' : up_cere.tipo,
 			'abogado' : up_cere.abogado,
@@ -432,16 +499,19 @@ def ceremonia(request):
 			'coros' : up_cere.coros,
 			'boutonnieres' : up_cere.boutonnieres,
 			'servicio_fotografia' : up_cere.servicio_fotografia
-			}
+			}	
 
 	return render(request, 'ceremonia_edit.html', context)
 
 def fiesta(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	fest = Fiesta.objects.all()
 	print(fest)
 	if not len(fest):
 		fest_form = Fiesta_Form(request.POST or None)
 		context = {
+			'costos' : costos,
 			'fest_form' : fest_form
 		}
 
@@ -457,6 +527,7 @@ def fiesta(request):
 			new_fest = Fiesta.objects.create(recordatorios=recordatorios, musiva_vivo=musiva_vivo, tarjetas=tarjetas, 
 				licores=licores, fuera_ciudad=fuera_ciudad, flores=flores)
 
+			calcular_costos()
 			return HttpResponseRedirect('fiesta')
 
 		return render(request, 'fiesta.html', context)
@@ -466,6 +537,7 @@ def fiesta(request):
 		
 		fest_form = Fiesta_Form(request.POST or None, instance=up_fest)
 		context = {
+			'costos' : costos,
 			'fest_form' : fest_form
 		}
 
@@ -478,8 +550,10 @@ def fiesta(request):
 			up_fest.fuera_ciudad = form_data.get("fuera_ciudad")
 			up_fest.flores = form_data.get("flores")
 			up_fest.save()
+			calcular_costos()
 
 		context = {
+			'costos' : costos,
 			'fest_form' : fest_form,
 			'recordatorios' : up_fest.recordatorios,
 			'musiva_vivo' : up_fest.musiva_vivo,
@@ -489,14 +563,18 @@ def fiesta(request):
 			'flores' : up_fest.flores
 			}
 
+	
 	return render(request, 'fiesta_edit.html', context)
 
 def luna_miel(request):
+	boda = Boda.objects.all()[0]
+	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
 	luna = Luna_Miel.objects.all()
 	
 	if not len(luna):
 		luna_form = Luna_Miel_Form(request.POST or None)
 		context = {
+			'costos' : costos,
 			'luna_form' : luna_form
 		}
 
@@ -506,6 +584,7 @@ def luna_miel(request):
 
 			new_luna = Luna_Miel.objects.create(viaje_colombia=viaje_colombia)
 
+			calcular_costos()
 			return HttpResponseRedirect('luna_miel')
 
 		return render(request, 'luna_miel.html', context)
@@ -515,6 +594,7 @@ def luna_miel(request):
 		
 		luna_form = Luna_Miel_Form(request.POST or None, instance=up_luna)
 		context = {
+			'costos' : costos,
 			'luna_form' : luna_form
 		}
 
@@ -522,10 +602,20 @@ def luna_miel(request):
 			form_data = luna_form.cleaned_data
 			up_luna.viaje_colombia = form_data.get("viaje_colombia")
 			up_luna.save()
+			calcular_costos()
 
 		context = {
+			'costos' : costos,
 			'luna_form' : luna_form,
 			'viaje_colombia' : up_luna.viaje_colombia
 			}
+
+
 	return render(request, 'luna_miel_edit.html', context)
 
+def calcular_costos():
+	boda = Boda.objects.all()
+	cere = Ceremonia.objects.all()
+	fest = Fiesta.objects.all()
+	luna = Luna_Miel.objects.all()
+	print("Aca estoy")
