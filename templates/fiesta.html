@@ -16,15 +16,13 @@
   </div>
   {{ cere_form.errors.recordatorios }}
 
-   <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-      <input type="checkbox" id="musiva_vivo" name="musiva_vivo">
-      </div>
-    </div>
-    <label class="form-control">Musica en Vivo</label>
-  </div>
-  {{ cere_form.errors.musiva_vivo }}
+   <label>Tipo de Musica</label>
+  <select id=musica name="musica" class="form-control" required="True">
+    <option value="Vivo">En vivo</option>
+    <option>DJ</option>
+  </select>
+  {{ cere_form.errors.musica }}
+  <br>
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -65,6 +63,16 @@
     <label class="form-control">Flores</label>
   </div>
   {{ cere_form.errors.flores }}
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+      <input type="checkbox" id="organizadora" name="organizadora">
+      </div>
+    </div>
+    <label class="form-control">Organizdora</label>
+  </div>
+  {{ cere_form.errors.organizadora }}
 
   <button type="submit" class="btn btn-primary">Crear</button>
   </form>

@@ -49,7 +49,7 @@ class Ceremonia_Form(forms.ModelForm):
 class Fiesta_Form(forms.ModelForm):
 	class Meta:
 		model = Fiesta
-		fields = ["recordatorios", "musiva_vivo", "tarjetas", "licores", "fuera_ciudad", "flores"]
+		fields = ["recordatorios", "musica", "tarjetas", "licores", "fuera_ciudad", "flores", "organizadora"]
 
 class Luna_Miel_Form(forms.ModelForm):
 	class Meta:

@@ -44,11 +44,12 @@ class Ceremonia(models.Model):
 
 class Fiesta(models.Model):
 	recordatorios = models.BooleanField()
-	musiva_vivo = models.BooleanField()
+	musica = models.CharField(max_length=50)
 	tarjetas = models.BooleanField()
 	licores = models.BooleanField()
 	fuera_ciudad = models.BooleanField()
 	flores = models.BooleanField()
+	organizadora = models.BooleanField()
 
 
 class Luna_Miel(models.Model):

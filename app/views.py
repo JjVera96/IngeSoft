@@ -7,8 +7,13 @@ from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Fo
 
 # Create your views here.
 def index(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	context = {
 		'costos' : costos
 	}
@@ -16,8 +21,13 @@ def index(request):
 	return render(request, 'index.html', context)
 
 def cotizacion(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	context = {
 		'costos' : costos
 	}
@@ -25,8 +35,13 @@ def cotizacion(request):
 	return render(request, 'cotizacion.html', context)
 
 def logistica(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	context = {
 		'costos' : costos
 	}
@@ -34,8 +49,13 @@ def logistica(request):
 	return render(request, 'logistica.html', context)
 
 def ahorro(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	context = {
 		'costos' : costos
 	}
@@ -43,8 +63,13 @@ def ahorro(request):
 	return render(request, 'ahorro.html', context)
 
 def crear_sala(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	sala_form = Sala_Form(request.POST or None)
 	context = {
 		'costos' : costos,
@@ -63,8 +88,13 @@ def crear_sala(request):
 	return render(request, 'crear_sala.html', context)
 
 def crear_mesa(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	mesa_form = Mesa_Form(request.POST or None)
 	salas = Sala.objects.all()
 	context = {
@@ -88,8 +118,13 @@ def crear_mesa(request):
 	return render(request, 'crear_mesa.html', context)
 
 def crear_invitado(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	invitado_form = Invitado_Form(request.POST or None)
 	context = {
 		'costos' : costos,
@@ -110,8 +145,13 @@ def crear_invitado(request):
 	return render(request, 'crear_invitado.html', context)
 
 def crear_regalo(request, id_user):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	regalo_form = Regalo_Form(request.POST or None)
 	titular = Invitado.objects.get(id=id_user)
 	context = {
@@ -133,8 +173,13 @@ def crear_regalo(request, id_user):
 	return render(request, 'crear_regalo.html', context)
 
 def crear_camarero(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+	
 	camarero_form = Camarero_Form(request.POST or None)
 	mesas = Mesa.objects.all()
 	context = {
@@ -163,8 +208,13 @@ def crear_camarero(request):
 	return render(request, 'crear_camarero.html', context)
 
 def listar_mesas(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+	
 	salas = Sala.objects.all()
 	lista = []
 	mesas = []
@@ -193,8 +243,13 @@ def listar_mesas(request):
 	return render(request, 'listar_mesas.html', context)
 
 def listar_salas(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	salas = Sala.objects.all()
 	mode = True
 	if not len(salas):
@@ -213,8 +268,13 @@ def listar_salas(request):
 	return render(request, 'listar_salas.html', context)
 
 def listar_camareros(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	lista = Camarero.objects.all()
 	camareros = []	
 	for l in lista:
@@ -247,8 +307,13 @@ def listar_camareros(request):
 	return render(request, 'listar_camareros.html', context)
 
 def listar_invitados(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	invitados = Invitado.objects.all()
 	mode = True
 	if not len(invitados):
@@ -267,8 +332,13 @@ def listar_invitados(request):
 	return render(request, 'listar_invitados.html', context)
 
 def listar_regalos(request, id_user):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	regalos = Regalo.objects.all().filter(titular=id_user)
 	titular = Invitado.objects.get(id=id_user)
 	mode = True
@@ -289,8 +359,13 @@ def listar_regalos(request, id_user):
 	return render(request, 'listar_regalos.html', context)
 
 def listar_todos_regalos(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	invitados = Invitado.objects.all()
 	lista = []
 	regalos = []
@@ -367,7 +442,7 @@ def pareja(request):
 	else:
 		up_pareja = Pareja.objects.all()[0]
 		up_boda = Boda.objects.all()[0]	
-		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+		costos = "{}$ - {}$".format(up_boda.costo_bajo, up_boda.costo_alto)
 		boda_form = Boda_Form(request.POST or None, instance=up_boda)
 		pareja_form = Pareja_Form(request.POST or None, instance=up_pareja)
 		context = {
@@ -398,6 +473,7 @@ def pareja(request):
 			up_boda.save()
 			up_pareja.save()
 			calcular_costos()
+			return HttpResponseRedirect('pareja')
 
 		context = {
 			'costos' : costos,
@@ -426,8 +502,13 @@ def pareja(request):
 	return render(request, 'pareja_edit.html', context)
 
 def ceremonia(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	cere = Ceremonia.objects.all()
 	
 	if not len(cere):
@@ -484,6 +565,7 @@ def ceremonia(request):
 			up_cere.servicio_fotografia = form_data.get("servicio_fotografia")
 			up_cere.save()
 			calcular_costos()
+			return HttpResponseRedirect('ceremonia')
 
 		context = {
 			'costos' : costos,
@@ -504,8 +586,13 @@ def ceremonia(request):
 	return render(request, 'ceremonia_edit.html', context)
 
 def fiesta(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	fest = Fiesta.objects.all()
 	print(fest)
 	if not len(fest):
@@ -518,14 +605,15 @@ def fiesta(request):
 		if fest_form.is_valid():
 			form_data = fest_form.cleaned_data
 			recordatorios = form_data.get("recordatorios")
-			musiva_vivo = form_data.get("musiva_vivo")
+			musica = form_data.get("musica")
 			tarjetas = form_data.get("tarjetas")
 			licores = form_data.get("licores")
 			fuera_ciudad = form_data.get("fuera_ciudad")
 			flores = form_data.get("flores")
+			organizadora = form_data.get("organizadora")
 
-			new_fest = Fiesta.objects.create(recordatorios=recordatorios, musiva_vivo=musiva_vivo, tarjetas=tarjetas, 
-				licores=licores, fuera_ciudad=fuera_ciudad, flores=flores)
+			new_fest = Fiesta.objects.create(recordatorios=recordatorios, musica=musica, tarjetas=tarjetas, 
+				licores=licores, fuera_ciudad=fuera_ciudad, flores=flores, organizadora=organizadora)
 
 			calcular_costos()
 			return HttpResponseRedirect('fiesta')
@@ -544,31 +632,39 @@ def fiesta(request):
 		if fest_form.is_valid():
 			form_data = fest_form.cleaned_data
 			up_fest.recordatorios = form_data.get("recordatorios")
-			up_fest.musiva_vivo = form_data.get("musiva_vivo")
+			up_fest.musica = form_data.get("musica")
 			up_fest.tarjetas = form_data.get("tarjetas")
 			up_fest.licores = form_data.get("licores")
 			up_fest.fuera_ciudad = form_data.get("fuera_ciudad")
 			up_fest.flores = form_data.get("flores")
+			up_fest.organizadora = form_data.get("organizadora")
 			up_fest.save()
 			calcular_costos()
+			return HttpResponseRedirect('fiesta')
 
 		context = {
 			'costos' : costos,
 			'fest_form' : fest_form,
 			'recordatorios' : up_fest.recordatorios,
-			'musiva_vivo' : up_fest.musiva_vivo,
+			'musica' : up_fest.musica,
 			'tarjetas' : up_fest.tarjetas,
 			'licores' : up_fest.licores,
 			'fuera_ciudad' : up_fest.fuera_ciudad,
-			'flores' : up_fest.flores
+			'flores' : up_fest.flores,
+			'organizadora' : up_fest.organizadora
 			}
 
 	
 	return render(request, 'fiesta_edit.html', context)
 
 def luna_miel(request):
-	boda = Boda.objects.all()[0]
-	costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
 	luna = Luna_Miel.objects.all()
 	
 	if not len(luna):
@@ -603,6 +699,7 @@ def luna_miel(request):
 			up_luna.viaje_colombia = form_data.get("viaje_colombia")
 			up_luna.save()
 			calcular_costos()
+			return HttpResponseRedirect('luna_miel')
 
 		context = {
 			'costos' : costos,
@@ -614,8 +711,121 @@ def luna_miel(request):
 	return render(request, 'luna_miel_edit.html', context)
 
 def calcular_costos():
-	boda = Boda.objects.all()
-	cere = Ceremonia.objects.all()
-	fest = Fiesta.objects.all()
-	luna = Luna_Miel.objects.all()
-	print("Aca estoy")
+	bodas = Boda.objects.all()
+	if bodas:
+		costo_min = 0
+		costo_max = 0
+		boda = Boda.objects.all()[0]
+		pareja = Pareja.objects.all()[0]
+		personas = boda.personas
+		if pareja.curso_pre:
+			costo_min += 120000
+			costo_max += 120000
+		if pareja.argollas:
+			costo_min += 500000
+			costo_max += 3000000
+		if pareja.confirmacion_novia:
+			costo_min += 55000
+			costo_max += 55000
+		if pareja.docs_novia:
+			costo_min += 60000
+			costo_max += 60000
+		if pareja.vestido_novia:
+			costo_min += 700000
+			costo_max += 2000000
+		if pareja.maquillaje_peinado:
+			costo_min += 150000
+			costo_max += 500000
+		if pareja.estetica:
+			costo_min += 80000
+			costo_max += 80000
+		if pareja.confirmacion_novio:
+			costo_min += 55000
+			costo_max += 55000
+		if pareja.docs_novio:
+			costo_min += 60000
+			costo_max += 60000
+		if pareja.vestido_novio:
+			costo_min += 350000
+			costo_max += 1200000
+
+		ceres = Ceremonia.objects.all()
+		if ceres:
+			cere = Ceremonia.objects.all()[0]
+			#Iglesia
+			if cere.tipo == 'Iglesia':
+				if cere.iglesia_fuera:
+					costo_min += 70000
+					costo_max += 150000
+				if cere.ceremonia:
+					costo_min += 100000
+					costo_max += 250000
+			#Civil
+			if cere.tipo == 'Civil':
+				if cere.ceremonia:
+					costo_min += 40000
+					costo_max += 40000
+			#Ambos
+			if cere.abogado:
+				costo_min += 100000
+				costo_max += 100000
+			if cere.flores:
+				costo_min += 300000
+				costo_max += 300000
+			if cere.ramo:
+				costo_min += 70000
+				costo_max += 70000
+			if cere.pajecitos:
+				costo_min += 150000
+				costo_max += 150000
+			if cere.carro_antiguo:
+				costo_min += 280000
+				costo_max += 400000
+			if cere.coros:
+				costo_min += 150000
+				costo_max += 150000
+			if cere.boutonnieres:
+				costo_min += 100000
+				costo_max += 100000
+			if cere.servicio_fotografia:
+				costo_min += 1000000
+				costo_max += 1800000
+
+		fests = Fiesta.objects.all()
+		if fests:
+			fest = Fiesta.objects.all()[0]
+			if fest.recordatorios:
+				costo_min += 1500000
+				costo_max += 1500000
+			if fest.musica == 'Vivo':
+				costo_min += 2000000
+				costo_max += 5000000
+			if fest.musica == 'DJ':
+				costo_min += 500000
+				costo_max += 2000000
+			if fest.tarjetas:
+				costo_min += 500000
+				costo_max += 1000000
+			if fest.licores:
+				costo_min += 1500000
+				costo_max += 2500000
+			if fest.fuera_ciudad:
+				costo_min += 600000
+				costo_max += 900000
+			if fest.flores:
+				costo_min += 300000
+				costo_max += 300000
+			if fest.organizadora:
+				costo_min += 1500000
+				costo_max += 3000000
+
+		lunas = Luna_Miel.objects.all()
+		if lunas:
+			luna = Luna_Miel.objects.all()[0]
+			if luna.viaje_colombia:
+				costo_min += 4000000
+				costo_max += 6000000
+						
+		boda.costo_alto = costo_max
+		boda.costo_bajo = costo_min
+		boda.save()
