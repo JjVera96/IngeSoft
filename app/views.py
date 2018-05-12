@@ -167,7 +167,7 @@ def crear_regalo(request, id_user):
 		descripcion = form_data.get("descripcion")
 		regalo = Regalo.objects.create(tipo=tipo, descripcion=descripcion)
 		regalo.titular.add(id_user)
-		url = "/app/logistica/listar_regalos/{}".format(id_user)
+		url = "/logistica/listar_regalos/{}".format(id_user)
 		return HttpResponseRedirect(url)
 
 	return render(request, 'crear_regalo.html', context)
