@@ -23,7 +23,6 @@
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -63,7 +62,11 @@
     </nav>
     <!-- Page Content -->
     <div class="container">
-    
+      {% if request.user_agent.browser.family == 'IE' %}
+        <h1 class="my-4">Navegador Obsoleto
+        <small>Estas usando un navegador muy antiguo y descontinuado, la pagina podria verse afectada, por favor actualizate</small>
+        </h1>
+      {% endif %}
       <!-- Page Heading -->
       <h1 class="my-4">Nuestra Boda
         <small>{% block jumbotrom %}Inicio{% endblock %}</small>
@@ -90,7 +93,8 @@
         Guillermo Roberto Solarte Martinez<br>
         Pereira - 2018<br>
         Mateo Castro Valencia - Nicolás Cardona Montaño<br>
-        Dubel Fernando Giraldo Duque - Juan José Vera Arango
+        Dubel Fernando Giraldo Duque - Juan José Vera Arango<br>
+        Usando Navegador {{request.user_agent.browser.family}} Version {{request.user_agent.browser.version_string}}<br>
         </p>
         </div>
       </div>
