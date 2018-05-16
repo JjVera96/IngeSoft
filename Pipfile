@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"beautifulsoup4" = "==4.6.0"
+"bs4" = "==0.0.1"
+certifi = "==2018.4.16"
+chardet = "==3.0.4"
+dj-database-url = "==0.5.0"
+django-heroku = "==0.3.1"
+gunicorn = "==19.8.1"
+idna = "==2.6"
+pipenv = "==11.10.4"
+"psycopg2" = "==2.7.4"
+pytz = "==2018.4"
+requests = "==2.18.4"
+ua-parser = "==0.8.0"
+"urllib3" = "==1.22"
+user-agents = "==1.1.0"
+virtualenv = "==15.2.0"
+virtualenv-clone = "==0.3.0"
+whitenoise = "==3.3.1"
+Django = "==2.0.5"
+django-user_agents = "==0.3.2"
+PyYAML = "==3.12"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
