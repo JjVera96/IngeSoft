@@ -2,7 +2,6 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
-from math import ceil
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Invitado, Sala, Regalo, Mesa, Camarero, Pareja, Boda, Ceremonia, Fiesta, Luna_Miel
 from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form, Boda_Form, Pareja_Form, Ceremonia_Form, Fiesta_Form, Luna_Miel_Form
