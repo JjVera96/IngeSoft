@@ -27,32 +27,32 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'index'%}">Nuestra Boda</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Nuestra Boda</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             {% block active_inicio %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'index'%}">
+              <a class="nav-link" href="{% url 'index' %}">
                 Inicio
                 <i class="fa fa-home"></i>
               </a>
             </li>
             {% block active_cot %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'cotizacion'%}">
+              <a class="nav-link" href="{% url 'cotizacion' %}">
                 Cotización
                 <i class="fa fa-cart-arrow-down"></i>
               </a>
             </li>
             {% block active_log %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'logistica'%}">
+              <a class="nav-link" href="{% url 'logistica' %}">
                 Logistica
                 <i class="fa fa fa-area-chart"></i>
               </a>
             </li>
             {% block active_aho %}<li class="nav-item">{% endblock %}
-              <a class="nav-link" href="{% url 'ahorro'%}">
+              <a class="nav-link" href="{% url 'ahorro' %}">
                 Ahorro
                 <i class="fa fa-dollar"></i>
               </a>
@@ -80,7 +80,10 @@
         <div class="row"> 
         <p class="m-0 text-left text-white font-italic col-lg-6">
         <label class="text-primary font-weight-bold">Total Costos</label> = 
-        {% block costos %}{% endblock %}
+        {% block costos %}
+        {% endblock %}
+        <br>
+        <a href="{% url 'pago' %}"><button type="submit" class="btn btn-primary">Pagar Ya!!</button></a>
         </p>
         <p class="m-0 text-right text-white font-italic col-lg-6">
         &raquo;Ingenieria del Software III&laquo; - UTP&copy;<br>

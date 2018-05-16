@@ -23,4 +23,5 @@ urlpatterns = [
     path('cotizacion/ceremonia', views.ceremonia, name='ceremonia'),
     path('cotizacion/fiesta', views.fiesta, name='fiesta'),
     path('cotizacion/luna_miel', views.luna_miel, name='luna_miel'),
+    path('pago', views.pago, name='pago'),
 ]

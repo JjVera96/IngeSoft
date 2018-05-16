@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+from bs4 import BeautifulSoup
+import requests
+from math import ceil
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Invitado, Sala, Regalo, Mesa, Camarero, Pareja, Boda, Ceremonia, Fiesta, Luna_Miel
 from .forms import Invitado_Form, Sala_Form, Regalo_Form, Mesa_Form, Camarero_Form, Boda_Form, Pareja_Form, Ceremonia_Form, Fiesta_Form, Luna_Miel_Form
@@ -519,7 +522,6 @@ def ceremonia(request):
 		}
 
 		if cere_form.is_valid():
-			print("Valido")
 			form_data = cere_form.cleaned_data
 			tipo = form_data.get("tipo")
 			abogado = form_data.get("abogado")
@@ -594,7 +596,6 @@ def fiesta(request):
 		costos = "No hay registro de boda"
 
 	fest = Fiesta.objects.all()
-	print(fest)
 	if not len(fest):
 		fest_form = Fiesta_Form(request.POST or None)
 		context = {
@@ -829,3 +830,28 @@ def calcular_costos():
 		boda.costo_alto = costo_max
 		boda.costo_bajo = costo_min
 		boda.save()
+
+def pago(request):
+	response_one_dollar= requests.get('http://www.xe.com/es/currencyconverter/convert/?Amount=1&From=USD&To=COP')
+	soup_one_dollar = BeautifulSoup(response_one_dollar.content, 'html.parser')
+	container_dollar = soup_one_dollar.find('span', 'uccResultAmount')
+	one_dollar = container_dollar.contents[0]
+	dolar = one_dollar.string.replace(".", "").replace(",", ".")
+	bodas = Boda.objects.all()
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	minimo = round(boda.costo_bajo/float(dolar), 2)
+	maximo = round(boda.costo_alto/float(dolar) ,2)
+
+	context = {
+		'costos' : costos,
+		'dolar' : one_dollar,
+		'minimo' : minimo,
+		'maximo' : maximo
+	}
+
+	return render(request, 'pago.html', context)

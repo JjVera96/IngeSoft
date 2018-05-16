@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block head_title %}Pago{% endblock %}
+{% load static %}
+{% block jumbotrom %}Pago{% endblock %}
+{% block container %}
+<p>
+Este es el valor del dolar hoy {{dolar}} <br>
+Información traida desde <a target="_blank" href="https://www.xe.com/es/">XE</a> <br>
+Valor minimo a pagar en dolares es {{minimo}}<br>
+Valor maximo a pagar en dolares es {{maximo}}<br>
+</p>
+<br>
+Paga con Paypal<br>
+<img class="img-responsive" src="{% static 'img/paypal.png' %}" alt=""><br>
+<a target="_blank" href="https://www.paypal.me/jujovera/{{minimo}}"><button class="btn btn-primary">Pagar Mimino!!</button></a>
+<a target="_blank" href="https://www.paypal.me/jujovera/{{maximo}}"><button class="btn btn-primary">Pagar Maximo!!</button></a>
+{% endblock %}
+{% block costos %}{{costos}}{% endblock %}
