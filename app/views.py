@@ -64,6 +64,100 @@ def ahorro(request):
 
 	return render(request, 'ahorro.html', context)
 
+def comida(request):
+	bodas = Boda.objects.all()
+	titulo = 'Comida'
+	descripcion = 'Las estaciones de comida casuales no son solo divertidas, sino también una forma de ahorrar en comparación con una cena formal.'
+	image = 'comida.jpeg'
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	context = {
+		'costos' : costos,
+		'titulo' : titulo,
+		'descripcion' : descripcion,
+		'image' : image
+	}
+
+	return render(request, 'ahorros.html', context)
+
+def accesorios(request):
+	bodas = Boda.objects.all()
+	titulo = 'Accesorios'
+	image = 'comida.jpeg'
+	descripcion = 'Cómo dice la tradición, toda novia debe llevar algo prestado el día de su boda entonces, ¿qué tal si pides el velo prestado? ¿o los aretes? ¿el tocado para el peinado?'
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	context = {
+		'costos' : costos,
+		'titulo' : titulo,
+		'descripcion' : descripcion,
+		'image' : image
+	}
+
+	return render(request, 'ahorros.html', context)
+
+def pastel(request):
+	bodas = Boda.objects.all()
+	titulo = 'Pastel'
+	descripcion = 'No necesitas un pastel tamaño gigante para la boda, puedes disponer uno pequeño en forma de exhibición para las fotos y la decoración, y servir a tus invitados la opción de postre que ofrecen en el lugar del banquete.'
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	context = {
+		'costos' : costos,
+		'titulo' : titulo,
+		'descripcion' : descripcion
+	}
+
+	return render(request, 'ahorros.html', context)
+
+def recordatorios(request):
+	bodas = Boda.objects.all()
+	titulo = 'Recordatorios'
+	descripcion = 'Son un detalle muy lindo y especial, pero cuando se trata de ahorrar, hay que pensar en todo y los recordatorios no son obligatorios.'
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	context = {
+		'costos' : costos,
+		'titulo' : titulo,
+		'descripcion' : descripcion
+	}
+
+	return render(request, 'ahorros.html', context)
+
+def en_casa(request):
+	bodas = Boda.objects.all()
+	titulo = 'En Casa'
+	descripcion = 'Organizar el matrimonio en casa es una opción ideal para un matrimonio íntimo y de poco presupuesto.'
+	if bodas:
+		boda = Boda.objects.all()[0]
+		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
+	else:
+		costos = "No hay registro de boda"
+
+	context = {
+		'costos' : costos,
+		'titulo' : titulo,
+		'descripcion' : descripcion
+	}
+
+	return render(request, 'ahorros.html', context)
+
 def crear_sala(request):
 	bodas = Boda.objects.all()
 	if bodas:

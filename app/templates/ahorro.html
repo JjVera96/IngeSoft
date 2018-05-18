@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block head_title %}Ahorro{% endblock %}
+{% load static %}
+{% block active_aho %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}Ahorro{% endblock %}
+{% block container %}
+<div class="row">
+	<div class="col-lg-6 portfolio-item">
+	  <div class="card h-100">
+		<a href="{% url 'comida' %}"><img class="card-img-top" src="{% static 'img/estacion.jpg' %}" alt=""></a>
+		<div class="card-body">
+		  <h4 class="card-title">
+			<a href="{% url 'comida' %}">Comida</a>
+		  </h4>
+		  <p class="card-text">Estación de Comida</p>
+		</div>
+	  </div>
+	</div>
+	<div class="col-lg-6 portfolio-item">
+	  <div class="card h-100">
+		<a href="{% url 'accesorios' %}"><img class="card-img-top" src="{% static 'img/accesorios.png' %}" alt=""></a>
+		<div class="card-body">
+		  <h4 class="card-title">
+			<a href="{% url 'accesorios' %}">Accesorios</a>
+		  </h4>
+		  <p class="card-text">Pedir accesorios prestados</p>
+		</div>
+	  </div>
+	</div>
+	<div class="col-lg-6 portfolio-item">
+	  <div class="card h-100">
+		<a href="{% url 'pastel' %}"><img class="card-img-top" src="{% static 'img/pastel.jpg' %}" alt=""></a>
+		<div class="card-body">
+		  <h4 class="card-title">
+			<a href="{% url 'pastel' %}">Pastel</a>
+		  </h4>
+		  <p class="card-text">Pastel de Exhibicion</p>
+		</div>
+	  </div>
+	</div>
+	<div class="col-lg-6 portfolio-item">
+	  <div class="card h-100">
+		<a href="{% url 'recordatorios' %}"><img class="card-img-top" src="{% static 'img/recordatorios.jpg' %}" alt=""></a>
+		<div class="card-body">
+		  <h4 class="card-title">
+			<a href="{% url 'recordatorios' %}">Recordatorios</a>
+		  </h4>
+		  <p class="card-text">Ahorrate los Recordatorios</p>
+		</div>
+	  </div>
+	</div>
+		<div class="col-lg-6 portfolio-item">
+	  <div class="card h-100">
+		<a href="{% url 'en_casa' %}"><img class="card-img-top" src="{% static 'img/casa.jpg' %}" alt=""></a>
+		<div class="card-body">
+		  <h4 class="card-title">
+			<a href="{% url 'en_casa' %}">En casa</a>
+		  </h4>
+		  <p class="card-text">Casate en casa</p>
+		</div>
+	  </div>
+	</div>
+</div>
+
+{% endblock %}
+{% block costos %}{{costos}}{% endblock %}

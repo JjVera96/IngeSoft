@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block head_title %}{{titulo}}{% endblock %}
+{% load static %}
+{% block active_aho %}<li class="nav-item active">{% endblock %}
+{% block jumbotrom %}{{titulo}}{% endblock %}
+{% block container %}
+<h3>Sugerencia para ahorrar</h3>
+<div class="row">
+	<div class="col-lg-6">
+		<p>{{descripcion}}</p>
+		<p>Es hora de Ahorrar. Siempre es bueno hacerlo...</p>
+		<p>¿Que esperas? <b>¡Ahorra ya!</b></p>
+		<h3 class="text-danger">Ahorra!!</h3>
+	</div>
+	<div class="col-lg-4">
+		{% if titulo == 'Comida' %}
+		<img class="img-thumbnail" src="{% static 'img/comida.jpeg' %}" alt="Responsive image">
+		{% endif %}
+		{% if titulo == 'Accesorios' %}
+		<img class="img-thumbnail" src="{% static 'img/accesos.jpg' %}" alt="Responsive image">
+		{% endif %}
+		{% if titulo == 'Pastel' %}
+		<img class="img-thumbnail" src="{% static 'img/bpastel.jpg' %}" alt="Responsive image">
+		{% endif %}
+		{% if titulo == 'Recordatorios' %}
+		<img class="img-thumbnail" src="{% static 'img/vasos.jpg' %}" alt="Responsive image">
+		{% endif %}
+		{% if titulo == 'En Casa' %}
+		<img class="img-thumbnail" src="{% static 'img/bcasa.jpg' %}" alt="Responsive image">
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+{% block costos %}{{costos}}{% endblock %}
