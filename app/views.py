@@ -68,7 +68,6 @@ def comida(request):
 	bodas = Boda.objects.all()
 	titulo = 'Comida'
 	descripcion = 'Las estaciones de comida casuales no son solo divertidas, sino también una forma de ahorrar en comparación con una cena formal.'
-	image = 'comida.jpeg'
 	if bodas:
 		boda = Boda.objects.all()[0]
 		costos = "{}$ - {}$".format(boda.costo_bajo, boda.costo_alto)
@@ -78,8 +77,7 @@ def comida(request):
 	context = {
 		'costos' : costos,
 		'titulo' : titulo,
-		'descripcion' : descripcion,
-		'image' : image
+		'descripcion' : descripcion
 	}
 
 	return render(request, 'ahorros.html', context)
@@ -87,7 +85,6 @@ def comida(request):
 def accesorios(request):
 	bodas = Boda.objects.all()
 	titulo = 'Accesorios'
-	image = 'comida.jpeg'
 	descripcion = 'Cómo dice la tradición, toda novia debe llevar algo prestado el día de su boda entonces, ¿qué tal si pides el velo prestado? ¿o los aretes? ¿el tocado para el peinado?'
 	if bodas:
 		boda = Boda.objects.all()[0]
@@ -98,8 +95,7 @@ def accesorios(request):
 	context = {
 		'costos' : costos,
 		'titulo' : titulo,
-		'descripcion' : descripcion,
-		'image' : image
+		'descripcion' : descripcion
 	}
 
 	return render(request, 'ahorros.html', context)
