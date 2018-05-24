@@ -38,8 +38,30 @@ function validar() {
 		return false;
 	}
 
-	if (Match(nombre_novia, "[^A_ZÑa-zñ]+$")) {
+	var exp = /^[a-zA-Z ]*$/;
+
+	if (!exp.test(nombre_novia)) {
 		alert("Nombre de la Novia solo puede tener letras");
+		return false;
+	}
+
+	if (!exp.test(nombre_novia)) {
+		alert("Nombre de la Novia solo puede tener letras");
+		return false;
+	}
+
+	if (!exp.test(nombre_novio)) {
+		alert("Nombre del Novio solo puede tener letras");
+		return false;
+	}
+
+	if (!exp.test(apellido_novia)) {
+		alert("Apellido de la Novia solo puede tener letras");
+		return false;
+	}
+
+	if (!exp.test(apellido_novio)) {
+		alert("Apellido del Novio solo puede tener letras");
 		return false;
 	}
 }
